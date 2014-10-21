@@ -292,7 +292,8 @@ else
   autocmd FileType html noremap <F9> :silent update<Bar>silent !xdg-open %:p & <CR><C-L>
 endif
 
-autocmd Filetype html inoremap <C-_> </<C-X><C-O><CR>  " Auto-close tags with Ctrl-_
+" Auto-close tags with Ctrl-_
+autocmd Filetype html inoremap <C-_> </<C-X><C-O><CR>
 
 " CSS:
 
