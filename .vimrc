@@ -91,11 +91,6 @@ let g:airline_detect_paste=1
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
 
-" AutoComplPop: Automatically popup Omnicompletion
-Plugin 'L9'  " Required by AutoComplPop
-Plugin 'dirkwallenstein/vim-autocomplpop' "This fork uses Tab to switch within a list
-let g:acp_behaviorSnipmateLength = 1
-
 " a: Easy toggling between .c and .c files
 " Keys ,a
 Plugin 'vim-scripts/a.vim'
@@ -161,6 +156,7 @@ set pastetoggle=<F12>     " Use paste modes to copy in terminal form other windo
 " TODO: set clipboard=unnamedplus " yank/paste to the system clipboard (*) by default (needs vim-gnome)
 set textwidth=79          " Max number of columns, for auto line breaking
 set report=0              " Always show count of modifications (e.g. substitution)
+set omnifunc=syntaxcomplete#Complete " Omnicomplete function for C^X+C^O
 autocmd BufWrite * :call DeleteTrailingWS() " Automatically delete trailing spaces when programming
 
 " Keys: (make Y consistent with C and D)
