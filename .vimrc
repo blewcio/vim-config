@@ -233,7 +233,7 @@ set cursorline         " Highlight the screen line of the cursor.
 set list               " Display whitespaces ...
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅ " ... but show only tabs and trailing whitespaces (from github/scroolose)
 set showmatch          " Highlight matching brackets
-"set matchtime=3       " Bracket highlighting time (1/10 of second)
+set matchtime=1        " Bracket highlighting time (1/10 of second)
 set laststatus=2       " Always show the status line (0 never)
 set noerrorbells
 autocmd GUIEnter * set visualbell t_vb= " Disables bells in GUI mode
