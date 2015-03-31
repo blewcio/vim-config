@@ -96,6 +96,9 @@ let g:airline#extensions#tabline#enabled = 1 " List of open files on top
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
 
+" Tmuxline: list active tmux sessions in the bottom of the screen
+Plugin 'edkolev/tmuxline.vim'
+
 " a: Easy toggling between .c and .h files
 " Keys ,a
 Plugin 'vim-scripts/a.vim'
@@ -108,7 +111,6 @@ Plugin 'gorodinskiy/vim-coloresque'
 " Keys:,ww open, ,wh Compile to HTML
 Plugin 'vim-scripts/vimwiki'
 
-" TODO: Plugin 'edkolev/tmuxline.vim'
 " TODO: Plugin 'vim-scripts/YankRing.vim'
 " TODO: Plugin 'jplaut/vim-arduino-ino'
 
