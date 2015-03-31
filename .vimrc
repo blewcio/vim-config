@@ -9,7 +9,7 @@ Plugin 'gmarik/vundle'
 
 " BufExplorer: open a window with a list of active buffers
 Plugin 'jlanzarotta/bufexplorer'
-nnoremap <F4> :BufExplorerHorizontalSplit<CR>
+nnoremap ,b :BufExplorerHorizontalSplit<CR>
 
 " NerdTree: open a window with a file tree
 " Key: <F2>
