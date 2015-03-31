@@ -91,7 +91,6 @@ endfunction
 Plugin 'bling/vim-airline'
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
-let g:airline#extensions#tabline#enabled = 1 " List of open files on top
 
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
