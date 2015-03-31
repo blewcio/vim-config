@@ -22,11 +22,12 @@ Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<leader>t'
 
 " Easymotion: Jump directly to a position on the screen
-" Keys: ,,w ,,W ,,e ,,E ,,f
+" Keys: ,,f{character} and ,,F{character}, ,,w words after, ,,b words before
 Plugin 'Lokaltog/vim-easymotion'
 
 " NerdCommenter: Comment with shortcut keys
-" Keys: ,c<space> to toggle comments
+" Keys: ,cc comment, c<space> toggle comment, cu uncomment,
+"        c$ comment out till end of the line,
 Plugin 'scrooloose/nerdcommenter.git'
 
 " TagBar: Browse the tags of the current file and get an overview of its structure
@@ -34,10 +35,13 @@ Plugin 'majutsushi/tagbar'
 nnoremap <silent> <F2> :TagbarToggle<CR>
 
 " Fugitive: git integration
+" Commands: Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
 Plugin 'tpope/vim-fugitive'
 
 " Surround: Quick changing of surroundings (tags, parentheses, etc)
-" Keys: cs[",',t]; in visual mode <Shift-s> for prompt
+" Keys: cs[",',t,etc] to change; in visual mode <Shift-s> for prompt
+"       ds[",',t,etc] to delete
+"       ys{motion}[",',t,etc] to add; s as motion = whole line
 Plugin 'tpope/vim-surround'
 
 " Abolish: Universal substitution of word combinations.
@@ -48,11 +52,11 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
 
 " Matchit: Enable matching of complex brackets, e.g. html tags, with %
-" Keys: %, and combinations with motion keys, g%, ]%
+" Keys: % cycle through tags, but also through if, elsif, else (excluding C)
 Plugin 'tmhedberg/matchit'
 
 " Syntastic: Integrate syntax checking. By default works when writing to files.
-" Commands: Errors - to see the local list
+" Command: Errors - display local list of syntax errors
 Plugin 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1        " Visalize errors at the beginning of each line
 let g:syntastic_error_symbol="✗"      " Custom symbol for errors
@@ -91,7 +95,7 @@ let g:airline_detect_paste=1
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
 
-" a: Easy toggling between .c and .c files
+" a: Easy toggling between .c and .h files
 " Keys ,a
 Plugin 'vim-scripts/a.vim'
 nnoremap <Leader>a :A<CR>
@@ -100,14 +104,14 @@ nnoremap <Leader>a :A<CR>
 Plugin 'gorodinskiy/vim-coloresque'
 
 " Vimwiki: Personal wiki within of Vim
-" Keys: ,ww
+" Keys:,ww open, ,wh Compile to HTML
 Plugin 'vim-scripts/vimwiki'
 
 " TODO: Plugin 'edkolev/tmuxline.vim'
 " TODO: Plugin 'vim-scripts/YankRing.vim'
 " TODO: Plugin 'jplaut/vim-arduino-ino'
 
-" Additional color schemes
+" Color schemes
 Plugin 'jnurmine/Zenburn' " Low contrast for low lighting condition
 Plugin 'tomasr/molokai'
 
