@@ -113,6 +113,7 @@ Plugin 'vim-scripts/vimwiki'
 " TODO: Plugin 'jplaut/vim-arduino-ino'
 
 " Color schemes
+set t_Co=256              " Fix to enable color schemes on terminal
 Plugin 'jnurmine/Zenburn' " Low contrast for low lighting condition
 Plugin 'tomasr/molokai'
 
