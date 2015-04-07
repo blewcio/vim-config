@@ -343,8 +343,13 @@ Plugin 'vim-scripts/vimwiki'
 " TODO: Plugin 'vim-scripts/YankRing.vim'
 " TODO: Plugin 'jplaut/vim-arduino-ino'
 
-" Color schemes
-set t_Co=256              " Fix to enable color schemes on terminal
+" -------------  Colors -------------
+
+" Fix to enable color schemes on terminal
+if (&term == "screen-256color" || &term == "xterm-256color")
+  set t_Co=256
+endif
+
 Plugin 'jnurmine/Zenburn' " Low contrast for low lighting condition
 Plugin 'tomasr/molokai'
 
@@ -358,5 +363,3 @@ if has("gui_running") " From stackoverflow discussion
         set guifont=Consolas:h12:cANSI
     endif
 endif
-
-
