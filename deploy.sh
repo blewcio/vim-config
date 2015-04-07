@@ -32,5 +32,7 @@ fi
 ln -s $PWD/$VIMRC $TARGET
 unset TARGET
 
+# Checkout Vundle
+git submodule update --init --recursive
 # Download plugins with Vundle
 vim +PluginInstall +qall
