@@ -348,7 +348,7 @@ Plugin 'vim-scripts/vimwiki'
 " -------------  Colors -------------
 
 " Fix to enable color schemes on terminal
-if (&term == "screen-256color" || &term == "xterm-256color")
+if (&term == "screen-256color" || &term == "xterm")
   set t_Co=256
 endif
 
