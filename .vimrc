@@ -353,13 +353,17 @@ endif
 Plugin 'jnurmine/Zenburn' " Low contrast for low lighting condition
 Plugin 'tomasr/molokai'
 
-color molokai
-if has("gui_running") " From stackoverflow discussion
+try
+  colorscheme molokai
+  if has("gui_running") " From stackoverflow discussion
     if has("gui_gtk2")
-        set guifont=Inconsolata\ 14
+      set guifont=Inconsolata\ 14
     elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h14
+      set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
-        set guifont=Consolas:h12:cANSI
+      set guifont=Consolas:h12:cANSI
     endif
-endif
+  endif
+catch
+  echo "Color scheme cannot be loaded. Maybe you need to install it first"
+endtry
