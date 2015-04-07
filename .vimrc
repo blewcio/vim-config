@@ -1,5 +1,7 @@
 " Do 16 Okt 2014 18:47:39 CEST
 " -------------  General configuration -------------
+set encoding=utf-8     " This line fixes encoding issues over SSH
+set termencoding=utf-8 " This line fixes encoding issues over SSH
 set nocompatible       " Activates vi Improved enhacements, e.g. filetype
 let mapleader= ","     " Map leader command key
 filetype plugin on     " Detect type and set FileType for event detection
