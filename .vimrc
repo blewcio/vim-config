@@ -13,10 +13,12 @@ if has("win32")  " TODO: needs relative paths
 "  set undodir=C:\vim\var\undo       " Where to store undo files
 "  set backupdir=C:\vim\var\backup   " Where to store backup files
 "  set viewdir=C:\vim\var\view       " Where to store view files
+"  set directory=C:\vim\var\swp      " Where to store swap files
 else
   set undodir=~/.vim/var/undo       " Where to store undo files
   set backupdir=~/.vim/var/backup   " Where to store backup files
   set viewdir=~/.vim/var/view       " Where to store view files
+  set directory=~/.vim/var/swp      " Where to store swap files
 endif
 set dictionary+=/usr/share/dict/words " " Load file for keyword autocompletion (^X^K)
 set thesaurus+=~/.vim/thesaurus/mthesaur.txt " Load file for thesaurus (^X^T)
