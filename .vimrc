@@ -176,6 +176,7 @@ autocmd Filetype html inoremap <C-_> </<C-X><C-O><CR>
 " JavaScript:
 
 " Arduino:
+au! BufRead,BufNewFile *.pde setfiletype arduino
 
 " -------------  Helper functions -------------
 
