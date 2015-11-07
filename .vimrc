@@ -168,6 +168,14 @@ else
   autocmd FileType html noremap <F9> :silent update<Bar>silent !xdg-open %:p & <CR><C-L>
 endif
 
+" Web Wiki:
+func! WikiModeOn()
+  setlocal textwidth=0 " No text wrapping for wiki articles
+  setlocal wrap        " Wrap lines for easier editing
+  echom "Wiki mode: textwidth restriction off, text wrapping off"
+endfunc
+command! WikiMode call WikiModeOn()
+
 " Auto-close tags with Ctrl-_
 autocmd Filetype html inoremap <C-_> </<C-X><C-O><CR>
 
