@@ -234,13 +234,27 @@ Plugin 'scrooloose/nerdtree.git'
 nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 
 " CtrlP: Fuzzy search in files and buffers
-" Keys: ,t to search, Ctrl-kj up and down
+" Keys: ,o or ,or search in recent files, ,of in directory, ,ob in buffers
+"       Ctrl-kj move up and down; Ctrl-c close
 Plugin 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader>t'
+let g:ctrlp_map = '<leader>o'
+let g:ctrlp_cmd = 'CtrlPMRU'
+nmap <Leader>or :CtrlPMRU<CR>
+nmap <Leader>of :CtrlP<CR>
+nmap <Leader>ob :CtrlPBuffer<CR>
 
 " Easymotion: Jump directly to a position on the screen
-" Keys: ,,f{character} and ,,F{character}, ,,w words after, ,,b words before
+" Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
 Plugin 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1  " Enable case-sensitive search
+map <Leader>w <Plug>(easymotion-bd-wl)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>s <Plug>(easymotion-s)
+" Jump to to characters
+" nmap <Leader>s <Plug>(easymotion-s2)
 
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
