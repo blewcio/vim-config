@@ -362,8 +362,11 @@ nnoremap <Leader>a :A<CR>
 Plugin 'gorodinskiy/vim-coloresque'
 
 " Vimwiki: Personal wiki within of Vim
-" Keys:,ww open, ,wh Compile to HTML
+"          Note: I modified the script to disable default bindings
+" Keys:,h open wiki (help), ,hn make a note
 Plugin 'vim-scripts/vimwiki'
+nmap <Leader>h <Plug>VimwikiIndex
+nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
 
 " TODO: Plugin 'vim-scripts/YankRing.vim'
 " TODO: Plugin 'jplaut/vim-arduino-ino'
