@@ -1,12 +1,184 @@
 " Do 16 Okt 2014 18:47:39 CEST
+
+"  -------------  Load plugins first  -------------
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Vundle: let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" BufExplorer: open a window with a list of active buffers
+" Plugin 'jlanzarotta/bufexplorer'
+" nnoremap ,b :BufExplorerHorizontalSplit<CR>
+
+" NerdTree: open a window with a file tree
+" Key: <F2>
+Plugin 'scrooloose/nerdtree.git'
+nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
+
+" CtrlP: Fuzzy search in files and buffers
+" Keys: ,o or ,or search in recent files, ,of in directory, ,ob in buffers
+"       Ctrl-kj move up and down; Ctrl-c close
+Plugin 'kien/ctrlp.vim'
+let g:ctrlp_map = '<leader>o'
+let g:ctrlp_cmd = 'CtrlPMRU'
+nmap <Leader>or :CtrlPMRU<CR>
+nmap <Leader>of :CtrlP<CR>
+nmap <Leader>ob :CtrlPBuffer<CR>
+
+" Easymotion: Jump directly to a position on the screen
+" Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
+Plugin 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1  " Enable case-sensitive search
+map <Leader>w <Plug>(easymotion-bd-wl)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>s <Plug>(easymotion-s)
+" Jump to to characters
+" nmap <Leader>s <Plug>(easymotion-s2)
+
+" NerdCommenter: Comment with shortcut keys
+" Keys: ,cc comment, c<space> toggle comment, cu uncomment,
+"        c$ comment out till end of the line,
+Plugin 'scrooloose/nerdcommenter.git'
+
+" TagBar: Browse the tags of the current file and get an overview of its structure
+Plugin 'majutsushi/tagbar'
+nnoremap <silent> <F2> :TagbarToggle<CR>
+
+" Fugitive: git integration
+" Commands: Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
+Plugin 'tpope/vim-fugitive'
+
+" Surround: Quick changing of surroundings (tags, parentheses, etc)
+" Keys: cs[",',t,etc] to change; in visual mode <Shift-s> for prompt
+"       ds[",',t,etc] to delete
+"       ys{motion}[",',t,etc] to add; s as motion = whole line
+Plugin 'tpope/vim-surround'
+
+" Abolish: Universal substitution of word combinations.
+" Command: %S/ / /g
+Plugin 'tpope/vim-abolish'
+
+" Repeat: Enable repeating of plugin actions with .
+Plugin 'tpope/vim-repeat'
+
+" Matchit: Enable matching of complex brackets, e.g. html tags, with %
+" Keys: % cycle through tags, but also through if, elsif, else (excluding C)
+Plugin 'tmhedberg/matchit'
+
+" Syntastic: Integrate syntax checking. By default works when writing to files.
+" Command: Errors - display local list of syntax errors
+Plugin 'scrooloose/syntastic'
+let g:syntastic_enable_signs=1        " Visalize errors at the beginning of each line
+let g:syntastic_error_symbol="✗"      " Custom symbol for errors
+let g:syntastic_warning_symbol="⚠"    " Custom symbol for warnings
+let g:syntastic_check_on_open=1       " Check buffers while opening files
+let g:syntastic_aggregate_errors=1    " Run through all available checkers
+let g:syntastic_enable_balloons=1     " Show ballons when the mouse is hovered
+" let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
+
+" ListToggle: Easy toggle quickfix and location lists
+" Keys: ,q and ,l
+Plugin 'Valloric/ListToggle'
+
+" ShowMarks: Highlight marked lines:
+" Keys: ,mt to toggle ,mm to place a mark, ,mh to clean a mark
+Plugin 'vim-scripts/ShowMarks'
+let g:showmarks_include="abcdefzxABCDEFZX" " Show just the marks set by a user
+let g:showmarks_enable=0                   " Don't show marks by default. Use <leader>mt to toggle
+let g:showmarks_hlline_lower=1             " Highlight the entire line
+
+" Ultisnip: Enable snippet injection
+" Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets' "Snipets repository
+"let g:UltiSnipsExpandTrigger="<Tab>"
+"let g:UltiSnipsJumpForwardTrigger="<Tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
+"let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
+
+" function! GetSnipsInCurrentScope() " Required for AutoComplPop
+"    return UltiSnips#SnippetsInCurrentScope()
+" endfunction
+
+" Airline: more functional status line
+Plugin 'bling/vim-airline'
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+
+" Bufferline: to list active buffers in airline
+Plugin 'bling/vim-bufferline'
+
+" Tmuxline: list active tmux sessions in the bottom of the screen
+Plugin 'edkolev/tmuxline.vim'
+
+" TmuxNavigator: seamlessly switch to tmux panes
+" Keys: Ctrl-hjkl
+Plugin 'christoomey/vim-tmux-navigator'
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+
+" Vimux: launch commands from vim in a separate tmux pane (useful for scripting)
+Plugin 'benmills/vimux'
+nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR> " Execute the current file (TODO: works for executable scripts only)
+nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
+nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
+
+" Dispatch: build asynchroneously in tmux
+" Commands: Make, Make!, Dispatch
+Plugin 'tpope/vim-dispatch'
+nnoremap <F9> :Dispatch<CR> " Remap F9 to run compiler asynchroneusly
+
+" a: Easy toggling between .c and .h files
+" Keys ,a
+Plugin 'vim-scripts/a.vim'
+nnoremap <Leader>a :A<CR>
+
+" Colorsque: Automatically visualize css color codes
+Plugin 'gorodinskiy/vim-coloresque'
+
+" Vimwiki: Personal wiki within of Vim
+"          Note: I modified the script to disable default bindings
+" Keys:,h open wiki (help), ,hn make a note
+Plugin 'vim-scripts/vimwiki'
+nmap <Leader>h <Plug>VimwikiIndex
+nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
+
+" Load colorscheme
+Plugin 'NLKNguyen/papercolor-theme'
+
+" TODO: Plugin 'vim-scripts/YankRing.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
 " -------------  General configuration -------------
+" --------------------------------------------------
+filetype plugin indent on " Load filetype plugin/configuration file
+filetype plugin on     " Detect type and set FileType for event detection
+filetype indent on     " Load filetype indent file
+
 set encoding=utf-8     " This line fixes encoding issues over SSH
 set termencoding=utf-8 " This line fixes encoding issues over SSH
 set nocompatible       " Activates vi Improved enhacements, e.g. filetype
 let mapleader= ","     " Map leader command key
-filetype plugin on     " Detect type and set FileType for event detection
-filetype plugin indent on " Load filetype plugin/configuration file
-filetype indent on     " Load filetype indent file
 set hidden             " Enable buffer change without saving
 set autowrite          " Auto-write at any buffer operation or command
 " set backup             " Auto-backup before rewrite.  NOTE: Might be annoying if you forget to close a buffer
@@ -217,168 +389,13 @@ if has("cscope")
     nnoremap g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 endif
 
-" -------------  Plugins -------------
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
-" Vundle: let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
-
-" BufExplorer: open a window with a list of active buffers
-" Plugin 'jlanzarotta/bufexplorer'
-" nnoremap ,b :BufExplorerHorizontalSplit<CR>
-
-" NerdTree: open a window with a file tree
-" Key: <F2>
-Plugin 'scrooloose/nerdtree.git'
-nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
-
-" CtrlP: Fuzzy search in files and buffers
-" Keys: ,o or ,or search in recent files, ,of in directory, ,ob in buffers
-"       Ctrl-kj move up and down; Ctrl-c close
-Plugin 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader>o'
-let g:ctrlp_cmd = 'CtrlPMRU'
-nmap <Leader>or :CtrlPMRU<CR>
-nmap <Leader>of :CtrlP<CR>
-nmap <Leader>ob :CtrlPBuffer<CR>
-
-" Easymotion: Jump directly to a position on the screen
-" Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
-Plugin 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Leader>'
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1  " Enable case-sensitive search
-map <Leader>w <Plug>(easymotion-bd-wl)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>s <Plug>(easymotion-s)
-" Jump to to characters
-" nmap <Leader>s <Plug>(easymotion-s2)
-
-" NerdCommenter: Comment with shortcut keys
-" Keys: ,cc comment, c<space> toggle comment, cu uncomment,
-"        c$ comment out till end of the line,
-Plugin 'scrooloose/nerdcommenter.git'
-
-" TagBar: Browse the tags of the current file and get an overview of its structure
-Plugin 'majutsushi/tagbar'
-nnoremap <silent> <F2> :TagbarToggle<CR>
-
-" Fugitive: git integration
-" Commands: Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
-Plugin 'tpope/vim-fugitive'
-
-" Surround: Quick changing of surroundings (tags, parentheses, etc)
-" Keys: cs[",',t,etc] to change; in visual mode <Shift-s> for prompt
-"       ds[",',t,etc] to delete
-"       ys{motion}[",',t,etc] to add; s as motion = whole line
-Plugin 'tpope/vim-surround'
-
-" Abolish: Universal substitution of word combinations.
-" Command: %S/ / /g
-Plugin 'tpope/vim-abolish'
-
-" Repeat: Enable repeating of plugin actions with .
-Plugin 'tpope/vim-repeat'
-
-" Matchit: Enable matching of complex brackets, e.g. html tags, with %
-" Keys: % cycle through tags, but also through if, elsif, else (excluding C)
-Plugin 'tmhedberg/matchit'
-
-" Syntastic: Integrate syntax checking. By default works when writing to files.
-" Command: Errors - display local list of syntax errors
-Plugin 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1        " Visalize errors at the beginning of each line
-let g:syntastic_error_symbol="✗"      " Custom symbol for errors
-let g:syntastic_warning_symbol="⚠"    " Custom symbol for warnings
-let g:syntastic_check_on_open=1       " Check buffers while opening files
-let g:syntastic_aggregate_errors=1    " Run through all available checkers
-let g:syntastic_enable_balloons=1     " Show ballons when the mouse is hovered
-" let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
-
-" ListToggle: Easy toggle quickfix and location lists
-" Keys: ,q and ,l
-Plugin 'Valloric/ListToggle'
-
-" ShowMarks: Highlight marked lines:
-" Keys: ,mt to toggle ,mm to place a mark, ,mh to clean a mark
-Plugin 'vim-scripts/ShowMarks'
-let g:showmarks_include="abcdefzxABCDEFZX" " Show just the marks set by a user
-let g:showmarks_enable=0                   " Don't show marks by default. Use <leader>mt to toggle
-let g:showmarks_hlline_lower=1             " Highlight the entire line
-
-" Ultisnip: Enable snippet injection
-" Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets' "Snipets repository
-"let g:UltiSnipsExpandTrigger="<Tab>"
-"let g:UltiSnipsJumpForwardTrigger="<Tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
-"let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
-
-" function! GetSnipsInCurrentScope() " Required for AutoComplPop
-"    return UltiSnips#SnippetsInCurrentScope()
-" endfunction
-
-" Airline: more functional status line
-Plugin 'bling/vim-airline'
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
-
-" Bufferline: to list active buffers in airline
-Plugin 'bling/vim-bufferline'
-
-" Tmuxline: list active tmux sessions in the bottom of the screen
-Plugin 'edkolev/tmuxline.vim'
-
-" TmuxNavigator: seamlessly switch to tmux panes
-" Keys: Ctrl-hjkl
-Plugin 'christoomey/vim-tmux-navigator'
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '>',
-    \ 'right' : '',
-    \ 'right_alt' : '<',
-    \ 'space' : ' '}
-
-" Vimux: launch commands from vim in a separate tmux pane (useful for scripting)
-Plugin 'benmills/vimux'
-nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR> " Execute the current file (TODO: works for executable scripts only)
-nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
-nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
-
-" Dispatch: build asynchroneously in tmux
-" Commands: Make, Make!, Dispatch
-Plugin 'tpope/vim-dispatch'
-nnoremap <F9> :Dispatch<CR> " Remap F9 to run compiler asynchroneusly
-
-" a: Easy toggling between .c and .h files
-" Keys ,a
-Plugin 'vim-scripts/a.vim'
-nnoremap <Leader>a :A<CR>
-
-" Colorsque: Automatically visualize css color codes
-Plugin 'gorodinskiy/vim-coloresque'
-
-" Vimwiki: Personal wiki within of Vim
-"          Note: I modified the script to disable default bindings
-" Keys:,h open wiki (help), ,hn make a note
-Plugin 'vim-scripts/vimwiki'
-nmap <Leader>h <Plug>VimwikiIndex
-nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
-
-" TODO: Plugin 'vim-scripts/YankRing.vim'
-" TODO: Plugin 'jplaut/vim-arduino-ino'
-
-" -------------  Colors -------------
+" -------------  Color configuration -------------
+" --------------------------------------------------
 
 " Fix to enable color schemes on terminal
 if (&term == "screen-256color" || &term == "xterm")
   set t_Co=256
 endif
-
-Plugin 'NLKNguyen/papercolor-theme'
 
 try
   colorscheme PaperColor
