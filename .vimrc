@@ -122,29 +122,32 @@ let g:airline_detect_paste=1
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
 
-" Tmuxline: list active tmux sessions in the bottom of the screen
-Plugin 'edkolev/tmuxline.vim'
+" Conditional loading if tmux installed
+if executable("tmux")
+  " Tmuxline: list active tmux sessions in the bottom of the screen
+  Plugin 'edkolev/tmuxline.vim'
 
-" TmuxNavigator: seamlessly switch to tmux panes
-" Keys: Ctrl-hjkl
-Plugin 'christoomey/vim-tmux-navigator'
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '>',
-    \ 'right' : '',
-    \ 'right_alt' : '<',
-    \ 'space' : ' '}
+  " TmuxNavigator: seamlessly switch to tmux panes
+  " Keys: Ctrl-hjkl
+  Plugin 'christoomey/vim-tmux-navigator'
+  let g:tmuxline_separators = {
+        \ 'left' : '',
+        \ 'left_alt': '>',
+        \ 'right' : '',
+        \ 'right_alt' : '<',
+        \ 'space' : ' '}
 
-" Vimux: launch commands from vim in a separate tmux pane (useful for scripting)
-Plugin 'benmills/vimux'
-nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR> " Execute the current file (TODO: works for executable scripts only)
-nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
-nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
+  " Vimux: launch commands from vim in a separate tmux pane (useful for scripting)
+  Plugin 'benmills/vimux'
+  nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR> " Execute the current file (TODO: works for executable scripts only)
+  nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
+  nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
 
-" Dispatch: build asynchroneously in tmux
-" Commands: Make, Make!, Dispatch
-Plugin 'tpope/vim-dispatch'
-nnoremap <F9> :Dispatch<CR> " Remap F9 to run compiler asynchroneusly
+  " Dispatch: build asynchroneously in tmux
+  " Commands: Make, Make!, Dispatch
+  Plugin 'tpope/vim-dispatch'
+  nnoremap <F9> :Dispatch<CR> " Remap F9 to run compiler asynchroneusly
+endif
 
 " a: Easy toggling between .c and .h files
 " Keys ,a
