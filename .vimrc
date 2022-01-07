@@ -310,12 +310,12 @@ let g:showmarks_hlline_lower=1             " Highlight the entire line
 
 " Ultisnip: Enable snippet injection
 " Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets' "Snipets repository
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
-let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets' "Snipets repository
+"let g:UltiSnipsExpandTrigger="<Tab>"
+"let g:UltiSnipsJumpForwardTrigger="<Tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
+"let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
 
 " function! GetSnipsInCurrentScope() " Required for AutoComplPop
 "    return UltiSnips#SnippetsInCurrentScope()
@@ -380,6 +380,7 @@ endif
 
 Plugin 'jnurmine/Zenburn' " Low contrast for low lighting condition
 Plugin 'tomasr/molokai'
+
 
 try
   colorscheme molokai
