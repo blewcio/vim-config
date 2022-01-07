@@ -378,12 +378,11 @@ if (&term == "screen-256color" || &term == "xterm")
   set t_Co=256
 endif
 
-Plugin 'jnurmine/Zenburn' " Low contrast for low lighting condition
-Plugin 'tomasr/molokai'
-
+Plugin 'NLKNguyen/papercolor-theme'
 
 try
-  colorscheme molokai
+  colorscheme PaperColor
+" set background=light  " Change default background to white
   if has("gui_running") " From stackoverflow discussion
     if has("gui_gtk2")
       set guifont=Inconsolata\ 14
