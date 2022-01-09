@@ -7,6 +7,7 @@
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
+let mapleader= ","            " Map leader command key
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -22,44 +23,40 @@ Plugin 'VundleVim/Vundle.vim'
 " nnoremap ,b :BufExplorerHorizontalSplit<CR>
 
 " NerdTree: open a window with a file tree
-" Key: <F2>
-Plugin 'scrooloose/nerdtree.git'
+" Key: <F3>
+Plugin 'preservim/nerdtree.git'
 nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 
 " CtrlP: Fuzzy search in files and buffers
-" Keys: ,o or ,or search in recent files, ,of in directory, ,ob in buffers
+" Keys: Open ,o or ,or search inrrecent files, ,of in filesystem, ,ob in buffers
 "       Ctrl-kj move up and down; Ctrl-c close
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>o'
-let g:ctrlp_cmd = 'CtrlPMRU'
-nmap <Leader>or :CtrlPMRU<CR>
-nmap <Leader>of :CtrlP<CR>
-nmap <Leader>ob :CtrlPBuffer<CR>
+let g:ctrlp_cmd = 'CtrlPCurFile' "Search current directory as default
+nmap <Leader>ff :CtrlP<CR>
+nmap <Leader>fr :CtrlPMRU<CR>
+nmap <Leader>fb :CtrlPBuffer<CR>
 
 " Easymotion: Jump directly to a position on the screen
 " Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
-Plugin 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Leader>'
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+Plugin 'easymotion/vim-easymotion'
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings with two leaders ,,
 let g:EasyMotion_smartcase = 1  " Enable case-sensitive search
-map <Leader>w <Plug>(easymotion-bd-wl)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>s <Plug>(easymotion-s)
-" Jump to to characters
-" nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>w <Plug>(easymotion-bd-w) " Jump to words on screen with one leader
+nmap <Leader>f <Plug>(easymotion-s) " Jump to characters on screen with one ,
 
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
 "        c$ comment out till end of the line,
-Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'preservim/nerdcommenter.git'
+let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters
 
 " TagBar: Browse the tags of the current file and get an overview of its structure
-Plugin 'majutsushi/tagbar'
+Plugin 'preservim/tagbar'
 nnoremap <silent> <F2> :TagbarToggle<CR>
 
 " Fugitive: git integration
-" Commands: Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
+" Commands: G add, Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
 Plugin 'tpope/vim-fugitive'
 
 " Surround: Quick changing of surroundings (tags, parentheses, etc)
@@ -81,46 +78,55 @@ Plugin 'tmhedberg/matchit'
 
 " Syntastic: Integrate syntax checking. By default works when writing to files.
 " Command: Errors - display local list of syntax errors
-Plugin 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1        " Visalize errors at the beginning of each line
+Plugin 'vim-syntastic/syntastic'
+let g:syntastic_always_populate_loc_list = 1 " Populate list with errors
+let g:syntastic_auto_loc_list = 1 " Auto-open error list, if any
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_jump = 2 " Auto-jump to first error
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs=1        " Visualize errors at the beginning of each line
 let g:syntastic_error_symbol="✗"      " Custom symbol for errors
 let g:syntastic_warning_symbol="⚠"    " Custom symbol for warnings
-let g:syntastic_check_on_open=1       " Check buffers while opening files
-let g:syntastic_aggregate_errors=1    " Run through all available checkers
 let g:syntastic_enable_balloons=1     " Show ballons when the mouse is hovered
-" let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
+let g:syntastic_aggregate_errors=1    " Run through all available checkers
+let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
 
 " ListToggle: Easy toggle quickfix and location lists
 " Keys: ,q and ,l
 Plugin 'Valloric/ListToggle'
+let g:lt_height = 5 " Height of the opened window
 
 " ShowMarks: Highlight marked lines:
 " Keys: ,mt to toggle ,mm to place a mark, ,mh to clean a mark
 Plugin 'vim-scripts/ShowMarks'
 let g:showmarks_include="abcdefzxABCDEFZX" " Show just the marks set by a user
 let g:showmarks_enable=0                   " Don't show marks by default. Use <leader>mt to toggle
-let g:showmarks_hlline_lower=1             " Highlight the entire line
+let g:showmarks_hlline_lower=0             " Highlight the entire line
 
 " Ultisnip: Enable snippet injection
 " Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets' "Snipets repository
-"let g:UltiSnipsExpandTrigger="<Tab>"
-"let g:UltiSnipsJumpForwardTrigger="<Tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
-"let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
-
-" function! GetSnipsInCurrentScope() " Required for AutoComplPop
-"    return UltiSnips#SnippetsInCurrentScope()
-" endfunction
-
-" Airline: more functional status line
-Plugin 'bling/vim-airline'
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
+if has("py3")
+  "Plugin 'SirVer/ultisnips'
+  "Plugin 'honza/vim-snippets' "Snipets repository
+  "let g:UltiSnipsExpandTrigger="<Tab>"
+  "let g:UltiSnipsJumpForwardTrigger="<Tab>"
+  "let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
+  "let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
+  " function! GetSnipsInCurrentScope() " Required for AutoComplPop
+  "    return UltiSnips#SnippetsInCurrentScope()
+  " endfunction
+endif
 
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
+
+" Airline: more functional status line
+Plugin 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
 
 " Conditional loading if tmux installed
 if executable("tmux")
@@ -138,7 +144,7 @@ if executable("tmux")
         \ 'space' : ' '}
 
   " Vimux: launch commands from vim in a separate tmux pane (useful for scripting)
-  Plugin 'benmills/vimux'
+  Plugin 'preservim/vimux'
   nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR> " Execute the current file (TODO: works for executable scripts only)
   nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
   nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
@@ -155,7 +161,7 @@ Plugin 'vim-scripts/a.vim'
 nnoremap <Leader>a :A<CR>
 
 " Colorsque: Automatically visualize css color codes
-Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'gko/vim-coloresque'
 
 " Vimwiki: Personal wiki within of Vim
 "          Note: I modified the script to disable default bindings
@@ -164,10 +170,10 @@ Plugin 'vim-scripts/vimwiki'
 nmap <Leader>h <Plug>VimwikiIndex
 nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
 
+" TODO: Plugin 'vim-scripts/YankRing.vim'
+
 " Load colorscheme
 Plugin 'NLKNguyen/papercolor-theme'
-
-" TODO: Plugin 'vim-scripts/YankRing.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
