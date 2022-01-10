@@ -33,9 +33,9 @@ nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>o'
 let g:ctrlp_cmd = 'CtrlPCurFile' "Search current directory as default
-nmap <Leader>ff :CtrlP<CR>
-nmap <Leader>fr :CtrlPMRU<CR>
-nmap <Leader>fb :CtrlPBuffer<CR>
+nmap <Leader>of :CtrlP<CR>
+nmap <Leader>or :CtrlPMRU<CR>
+nmap <Leader>ob :CtrlPBuffer<CR>
 
 " Easymotion: Jump directly to a position on the screen
 " Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
@@ -92,17 +92,15 @@ let g:syntastic_enable_balloons=1     " Show ballons when the mouse is hovered
 let g:syntastic_aggregate_errors=1    " Run through all available checkers
 let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
 
+" vim-signature: Show marks next to lines
+" Keys: ,m to toggle,  m/ lists of marks, mx place a mark, dmx delete
+Plugin 'kshenoy/vim-signature'
+nnoremap <Leader>m :SignatureToggle<CR> " Toggle marks visibility on screen
+
 " ListToggle: Easy toggle quickfix and location lists
 " Keys: ,q and ,l
 Plugin 'Valloric/ListToggle'
 let g:lt_height = 5 " Height of the opened window
-
-" ShowMarks: Highlight marked lines:
-" Keys: ,mt to toggle ,mm to place a mark, ,mh to clean a mark
-Plugin 'vim-scripts/ShowMarks'
-let g:showmarks_include="abcdefzxABCDEFZX" " Show just the marks set by a user
-let g:showmarks_enable=0                   " Don't show marks by default. Use <leader>mt to toggle
-let g:showmarks_hlline_lower=0             " Highlight the entire line
 
 " Ultisnip: Enable snippet injection
 " Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
@@ -169,8 +167,6 @@ Plugin 'gko/vim-coloresque'
 Plugin 'vim-scripts/vimwiki'
 nmap <Leader>h <Plug>VimwikiIndex
 nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
-
-" TODO: Plugin 'vim-scripts/YankRing.vim'
 
 " Load colorscheme
 Plugin 'NLKNguyen/papercolor-theme'
