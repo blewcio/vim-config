@@ -102,6 +102,10 @@ nnoremap <Leader>m :SignatureToggle<CR> " Toggle marks visibility on screen
 Plugin 'Valloric/ListToggle'
 let g:lt_height = 5 " Height of the opened window
 
+"vim-peekaboo: Show content of registers in a split window,
+" " or @ to toggle, or C-R in INSERT (then symbol to paste)
+Plugin 'junegunn/vim-peekaboo'
+
 " Ultisnip: Enable snippet injection
 " Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
 if has("py3")
