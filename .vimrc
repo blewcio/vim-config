@@ -27,15 +27,33 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree.git'
 nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 
-" CtrlP: Fuzzy search in files and buffers
-" Keys: Open ,o or ,or search inrrecent files, ,of in filesystem, ,ob in buffers
-"       Ctrl-kj move up and down; Ctrl-c close
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_map = '<leader>o'
-let g:ctrlp_cmd = 'CtrlPCurFile' "Search current directory as default
-nmap <Leader>of :CtrlP<CR>
-nmap <Leader>or :CtrlPMRU<CR>
-nmap <Leader>ob :CtrlPBuffer<CR>
+" Prefer fzf over CtrlP
+if executable("fzf")
+  Plugin 'junegunn/fzf.vim' " Main plugin
+  Plugin 'junegunn/fzf' "Base functions
+
+  " Open files
+  nmap <Leader>of :Files<CR>
+  " Open buffers
+  nmap <Leader>ob :Buffers<CR>
+  " Recent files
+  nmap <Leader>or :History<CR>
+  " File content (requies ripgrep)
+  nmap <Leader>oc :Rg<CR>
+  " Key mappings
+  nmap <Leader>? :Maps<CR>
+  " :Rg command to search for content in files (requires repgrip)
+else
+  " CtrlP: Fuzzy search in files and buffers
+  " Keys: Open ,o or ,or search inrrecent files, ,of in filesystem, ,ob in buffers
+  "       Ctrl-kj move up and down; Ctrl-c close
+  Plugin 'ctrlpvim/ctrlp.vim'
+  let g:ctrlp_map = '<leader>o'
+  let g:ctrlp_cmd = 'CtrlPCurFile' "Search current directory as default
+  nmap <Leader>of :CtrlP<CR>
+  nmap <Leader>or :CtrlPMRU<CR>
+  nmap <Leader>ob :CtrlPBuffer<CR>
+endif
 
 " Easymotion: Jump directly to a position on the screen
 " Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
