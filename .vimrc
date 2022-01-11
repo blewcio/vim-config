@@ -248,7 +248,7 @@ set pastetoggle=<F12>     " Use paste modes to copy in terminal form other windo
 set textwidth=79          " Max number of columns, for auto line breaking
 set report=0              " Always show count of modifications (e.g. substitution)
 set omnifunc=syntaxcomplete#Complete " Omnicomplete function for C^X+C^O
-autocmd BufWrite * :call DeleteTrailingWS() " Automatically delete trailing spaces when programming
+" autocmd BufWrite * :call DeleteTrailingWS() " Automatically delete trailing spaces when programming
 
 " Keys: (make Y consistent with C and D)
 nnoremap Y y$
