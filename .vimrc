@@ -27,6 +27,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree.git'
 nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 
+" SuperTab: auto-completion with Tab in Insert mode
+" Key: Tab
+Plugin 'ervandew/supertab'
+
 " Prefer fzf over CtrlP
 if executable("fzf")
   Plugin 'junegunn/fzf.vim' " Main plugin
