@@ -430,7 +430,7 @@ endif
 
 try
   colorscheme PaperColor
-" set background=light  " Change default background to white
+  set background=dark  " light to rhange default background to white
   if has("gui_running") " From stackoverflow discussion
     if has("gui_gtk2")
       set guifont=Inconsolata\ 14
