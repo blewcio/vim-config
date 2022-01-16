@@ -257,6 +257,13 @@ set omnifunc=syntaxcomplete#Complete " Omnicomplete function for C^X+C^O
 " Keys: (make Y consistent with C and D)
 nnoremap Y y$
 
+" Remap keys for German keyboard
+nnoremap ä ]
+nnoremap Ä [
+nnoremap ö }
+nnoremap Ö {
+nnoremap ü ~
+
 "Abbrevs: (expand in Insert mode)
 iab xdate <c-r>=strftime("%c")<cr>
 
