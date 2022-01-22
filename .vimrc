@@ -263,6 +263,12 @@ nnoremap Ä [
 nnoremap ö }
 nnoremap Ö {
 nnoremap ü ~
+vnoremap ä ]
+vnoremap Ä [
+vnoremap ö }
+vnoremap Ö {
+vnoremap ü ~
+
 
 "Abbrevs: (expand in Insert mode)
 iab xdate <c-r>=strftime("%c")<cr>
