@@ -21,6 +21,10 @@ Plugin 'VundleVim/Vundle.vim'
 " BufExplorer: open a window with a list of active buffers
 " Plugin 'jlanzarotta/bufexplorer'
 " nnoremap ,b :BufExplorerHorizontalSplit<CR>
+Plugin 'jlanzarotta/bufexplorer'
+nnoremap ,b :BufExplorerHorizontalSplit<CR>
+map gb :bnext<cr>
+map gB :bprevious<cr>
 
 " NerdTree: open a window with a file tree
 " Key: <F3>
