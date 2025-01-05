@@ -70,13 +70,50 @@ else
 endif
 
 " Easymotion: Jump directly to a position on the screen
-" Keys: ,s{character} ; ,w word within a line ; ,j lines up ; ,k lines down
+" Keys: ,,f{character} ; ,,w ,,b word within a line (forwards, backwards)
+" ,,,k ,,j jump to line
 Plugin 'easymotion/vim-easymotion'
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings with two leaders ,,
 let g:EasyMotion_smartcase = 1  " Enable case-sensitive search
-nmap <Leader>w <Plug>(easymotion-bd-w) " Jump to words on screen with one leader
-nmap <Leader>f <Plug>(easymotion-s) " Jump to characters on screen with one ,
+let g:EasyMotion_enter_jump_first = 1 " Jump to first occurence by pressing Enter
+map <Leader><Leader>w <Plug>(easymotion-overwin-w)
+map <Leader><Leader>j <Plug>(easymotion-overwin-line)
+map <Leader><Leader>k <Plug>(easymotion-overwin-line)
+map <Leader><Leader>l <Plug>(easymotion-lineanywhere)
+map <Leader><Leader>h <Plug>(easymotion-lineanywhere)
+map <Leader><Leader>; <Plug>(easymotion-repeat)
 
+" Integration of easy motion and fuzzy earch
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
+
+" Keys for interactive search with easy motion
+" map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
+" map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+" map <Leader><Leader>g <Plug>(incsearch-easymotion-stay)
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
 "        c$ comment out till end of the line,
