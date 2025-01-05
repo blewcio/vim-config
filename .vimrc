@@ -32,6 +32,14 @@ nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 " SuperTab: auto-completion with Tab in Insert mode
 " Key: Tab
 Plugin 'ervandew/supertab'
+" A collection of language pack for syntax highlighting, e.g. csv
+Plugin 'sheerun/vim-polyglot'
+
+" Insert or delete brackets, parens, quotes in pair.
+Plugin 'jiangmiao/auto-pairs'
+
+" A universal set of defaults
+Plugin 'tpope/vim-sensible'
 
 " Prefer fzf over CtrlP
 if executable("fzf")
