@@ -114,6 +114,11 @@ function! s:config_easyfuzzymotion(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+" Jump to any location specified by two characters.
+" (Sometimes quicker than Easymotion.)
+Plugin 'justinmk/vim-sneak'
+let g:sneak#label = 1
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
 "        c$ comment out till end of the line,
