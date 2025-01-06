@@ -119,6 +119,12 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 " (Sometimes quicker than Easymotion.)
 Plugin 'justinmk/vim-sneak'
 let g:sneak#label = 1
+
+" Move entire lines (or characters) of text
+" Keys: A-(hjkl)
+" let g:move_key_modifier_visualmode = 'S' "Move entire blocks in visual mode
+Plugin 'matze/vim-move' "
+
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
 "        c$ comment out till end of the line,
