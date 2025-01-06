@@ -55,9 +55,10 @@ nnoremap <Leader>y :y*<cr>
 nnoremap <Leader>c ^"*c$
 nnoremap <Leader>d ^"*d$
 vnoremap <Leader>y "*y
-vnoremap <Leader>Y "*y$
+nnoremap <Leader>Y "*y$
 vnoremap <Leader>c "*c
 vnoremap <Leader>d "*d
+nnoremap <Leader>yap "*yap
 
 " Text operations:
 nnoremap Y y$ " Yank to the end of line (make Y consistent with C and D)
