@@ -41,6 +41,9 @@ Plugin 'jiangmiao/auto-pairs'
 " A universal set of defaults
 Plugin 'tpope/vim-sensible'
 
+" Pairs of handy bracket mappings
+Plugin 'tpope/vim-unimpaired'
+
 " Prefer fzf over CtrlP
 if executable("fzf")
   Plugin 'junegunn/fzf.vim' " Main plugin
