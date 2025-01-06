@@ -209,7 +209,8 @@ let g:syntastic_aggregate_errors=1    " Run through all available checkers
 let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
 
 " vim-signature: Show marks next to lines
-" Keys: ,m to toggle,  m/ lists of marks, mx place a mark, dmx delete
+" Keys: ,m to toggle mark sign, m. toggle mark in line,  m? lists of marks 
+"       mx place a mark x, dmx delete
 Plugin 'kshenoy/vim-signature'
 nnoremap <Leader>m :SignatureToggle<CR> " Toggle marks visibility on screen
 
