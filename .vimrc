@@ -321,6 +321,18 @@ let g:SuperTabContextDefaultCompletionType = 'context'
 let g:SuperTabMappingForward = '<Tab>'
 let g:SuperTabMappingBackward = '<S-Tab>'
 
+" Improved asterisk *
+" Useful for z*cgn and then . (replace next search pattern)
+Plugin 'haya14busa/vim-asterisk'
+map *   <Plug>(asterisk-*)
+map #   <Plug>(asterisk-#)
+map g*  <Plug>(asterisk-g*)
+map g#  <Plug>(asterisk-g#)
+map z*  <Plug>(asterisk-z*)
+map gz* <Plug>(asterisk-gz*)
+map z#  <Plug>(asterisk-z#)
+map gz# <Plug>(asterisk-gz#)
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
