@@ -58,7 +58,7 @@ if executable("fzf")
   " File content (requies ripgrep)
   nmap <Leader>oc :Rg<CR>
   " Key mappings
-  nmap <Leader>? :Maps<CR>
+  nmap <Leader>/ :Maps<CR>
   " :Rg command to search for content in files (requires repgrip)
 else
   " CtrlP: Fuzzy search in files and buffers
