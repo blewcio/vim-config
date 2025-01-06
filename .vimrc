@@ -471,6 +471,7 @@ set scrolloff=3        " Number of lines to keep above/below for context info
 
 " Folding:
 " set foldmethod=indent " Default fold method (indent) (alternative: syntax)
+set foldmethod=syntax " Default fold method (indent) (alternative: syntax)
 set foldnestmax=3     " Maximal number of nested folds
 set nofoldenable      " By default all folds are open
 nnoremap + zo         " Shortcut for quicker opening of folds
@@ -493,7 +494,8 @@ set showcmd            " Show the current command in the last line (on the right
 set wildmenu           " Display autocompletion options above the command line
 set wildmode=longest:full,full " Completion mode that is used
 set wildignore+=*.o,*.obj " Ignored during autocompletion
-set completeopt+=longest
+" set completeopt=longest
+set completeopt=menu,menuone,popup
 set number             " Show line numbers
 set relativenumber     " Show relative line numer
 set numberwidth=5      " Width of the line number column
