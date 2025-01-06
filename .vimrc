@@ -86,13 +86,14 @@ map <Leader><Leader>l <Plug>(easymotion-lineanywhere)
 map <Leader><Leader>h <Plug>(easymotion-lineanywhere)
 map <Leader><Leader>; <Plug>(easymotion-repeat)
 
-" Integration of easy motion and fuzzy earch
+" Integration of Easyotion and fuzzy search
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-easymotion.vim'
 
-" Keys for interactive search with easy motion
+" Keys for interactive search with Easymotion
 " map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
 " map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
+" map <Leader><Leader>g <Plug>(incsearch-easymotion-stay)
 function! s:incsearch_config(...) abort
   return incsearch#util#deepextend(deepcopy({
   \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
@@ -102,10 +103,11 @@ function! s:incsearch_config(...) abort
   \   'is_expr': 0
   \ }), get(a:, 1, {}))
 endfunction
+" Remap standard search to Easymotion search
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
-" map <Leader><Leader>g <Plug>(incsearch-easymotion-stay)
+" Fuzzy search with Easymotion
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
@@ -137,6 +139,7 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 " Open list of changes as QuickFixList
 nmap ,ho :command! Gqf GitGutterQuickFix && copen<cr>
+
 " Visually display indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
 " Usage: Indent guide toggle :IndentGuidesToggle
