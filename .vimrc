@@ -336,10 +336,11 @@ if executable("tmux")
   nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
   nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
 
+  " TODO: Currently not used
   " Dispatch: build asynchroneously in tmux
   " Commands: Make, Make!, Dispatch
-  Plugin 'tpope/vim-dispatch'
-  nnoremap <F9> :Dispatch<CR> " Remap F9 to run compiler asynchroneusly
+  " Plugin 'tpope/vim-dispatch'
+  " nnoremap <F9> :Dispatch<CR> " Remap F9 to run compiler asynchroneusly
 endif
 
 " a: Easy toggling between .c and .h files
