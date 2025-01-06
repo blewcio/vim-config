@@ -1,3 +1,5 @@
+"TODO: Check ALE linting Plugin 'dense-analysis/ale'
+"TODO: Smart autocompletion popups
 " Do 16 Okt 2014 18:47:39 CEST
 "  -------------  Load plugins first  -------------
 " :PluginList       - lists configured plugins
