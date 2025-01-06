@@ -303,6 +303,14 @@ Plugin 'gko/vim-coloresque'
 " Load colorscheme
 Plugin 'NLKNguyen/papercolor-theme'
 
+" Easily align lines (e.g. variabe definitions)
+" Example: gaip= start command (ga) for inner paragraph (ip)
+"          and align around ="
+Plugin 'junegunn/vim-easy-align' " align spaces before =
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
