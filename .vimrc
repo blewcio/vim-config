@@ -147,6 +147,11 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 
+" Show different colors for different levels of parentheses
+" Usage: :RainbowToggle
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1
+
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
 "        c$ comment out till end of the line,
