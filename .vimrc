@@ -29,9 +29,6 @@ map gB :bprevious<cr>
 Plugin 'preservim/nerdtree.git'
 nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
 
-" SuperTab: auto-completion with Tab in Insert mode
-" Key: Tab
-Plugin 'ervandew/supertab'
 " A collection of language pack for syntax highlighting, e.g. csv
 Plugin 'sheerun/vim-polyglot'
 
@@ -107,6 +104,7 @@ endfunction
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
 " Fuzzy search with Easymotion
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 function! s:config_easyfuzzymotion(...) abort
@@ -311,6 +309,18 @@ Plugin 'junegunn/vim-easy-align' " align spaces before =
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" SuperTab: auto-completion with Tab in Insert mode
+" Key: Tab
+Plugin 'ervandew/supertab'
+" Enable SuperTab with SnipMate and OmniComplete
+let g:SuperTabDefaultCompletionType = '<C-n>' " Use <Ctrl-n> for default completion
+" SuperTab behavior with SnipMate
+let g:SuperTabContextDefaultCompletionType = 'context'
+" Custom SuperTab mappings
+let g:SuperTabMappingForward = '<Tab>'
+let g:SuperTabMappingBackward = '<S-Tab>'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
