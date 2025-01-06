@@ -292,12 +292,13 @@ nnoremap <Leader>a :A<CR>
 " Colorsque: Automatically visualize css color codes
 Plugin 'gko/vim-coloresque'
 
+" I don't really use vimwiki
 " Vimwiki: Personal wiki within of Vim
 "          Note: I modified the script to disable default bindings
 " Keys:,h open wiki (help), ,hn make a note
-Plugin 'vim-scripts/vimwiki'
-nmap <Leader>h <Plug>VimwikiIndex
-nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
+" Plugin 'vim-scripts/vimwiki'
+" nmap <Leader>h <Plug>VimwikiIndex
+" nmap <Leader>hn <Plug>VimwikiMakeDiaryNote
 
 " Load colorscheme
 Plugin 'NLKNguyen/papercolor-theme'
