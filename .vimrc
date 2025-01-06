@@ -1,5 +1,4 @@
 " Do 16 Okt 2014 18:47:39 CEST
-
 "  -------------  Load plugins first  -------------
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -12,6 +11,64 @@ let mapleader= ","            " Map leader command key
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" General key bindings
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" Remap keys for German keyboard
+nmap ü ~
+imap ü ~
+vmap ü ~
+cmap ü ~
+nmap ö [
+nmap ä ]
+imap ö [
+imap ä ]
+vmap ö [
+vmap ä ]
+cmap ö [
+cmap ä ]
+nmap Ö {
+nmap Ä }
+imap Ö {
+imap Ä }
+vmap Ö {
+vmap Ä }
+cmap Ö {
+cmap Ä }
+
+" Bash-like movement in Vims command line
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
+" Shortcuts to directly use the system clipboard
+nnoremap <Leader>p "*]p
+nnoremap <Leader>P "*]P
+nnoremap <Leader>y :y*<cr>
+nnoremap <Leader>c ^"*c$
+nnoremap <Leader>d ^"*d$
+vnoremap <Leader>y "*y
+vnoremap <Leader>Y "*y$
+vnoremap <Leader>c "*c
+vnoremap <Leader>d "*d
+
+" Text operations:
+nnoremap Y y$ " Yank to the end of line (make Y consistent with C and D)
+map <leader>pp :setlocal paste!<cr> " Toggle paste mode for copy paste from external sources
+" nnoremap <Space> i_<Esc>r " Insert a single character in Normal Mode
+
+" Others:
+nnoremap <leader>x :bd <CR> " Shortcut to close a buffer
+nnoremap <leader>cd :cd %:p:h<cr> " Switch to the directory of the open buffer
+map ,e :e $MYVIMRC<CR>
+map ,s :so $MYVIMRC<CR>
+
+" Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -395,22 +452,6 @@ set report=0              " Always show count of modifications (e.g. substitutio
 set omnifunc=syntaxcomplete#Complete " Omnicomplete function for C^X+C^O
 " autocmd BufWrite * :call DeleteTrailingWS() " Automatically delete trailing spaces when programming
 
-" Keys: (make Y consistent with C and D)
-nnoremap Y y$
-
-" Remap keys for German keyboard
-nnoremap ä ]
-nnoremap Ä [
-nnoremap ö }
-nnoremap Ö {
-nnoremap ü ~
-vnoremap ä ]
-vnoremap Ä [
-vnoremap ö }
-vnoremap Ö {
-vnoremap ü ~
-
-
 "Abbrevs: (expand in Insert mode)
 iab xdate <c-r>=strftime("%c")<cr>
 
@@ -425,17 +466,6 @@ set sidescroll=5       " Acceleration of horizontal scrolling. Jump by 5 col
 set whichwrap=h,l      " Allow to jump to the next/previous line by overrun
 set scrolljump=5       " Number of lines to scroll when the cursor gets off the screen
 set scrolloff=3        " Number of lines to keep above/below for context info
-
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-
-" Buffers:
-nnoremap <leader>x :bd <CR> " Shortcut to close a buffer
-
-" Files:
-nnoremap <leader>cd :cd %:p:h<cr> " Switch to the directory of the open buffer
 
 " Folding:
 " set foldmethod=indent " Default fold method (indent) (alternative: syntax)
