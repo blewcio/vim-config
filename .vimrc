@@ -154,9 +154,12 @@ let g:rainbow_active = 1
 
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
-"        c$ comment out till end of the line,
+" c$ comment out till end of the line,
 Plugin 'preservim/nerdcommenter.git'
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters
+" Additional mappings to comment entire blocks (without motion support)
+nnoremap <silent> <leader>cap V}:call nerdcommenter#Comment('x', 'toggle')<CR>
+nnoremap <silent> <leader>cB V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 
 " TagBar: Browse the tags of the current file and get an overview of its structure
 Plugin 'preservim/tagbar'
