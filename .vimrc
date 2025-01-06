@@ -125,6 +125,15 @@ let g:sneak#label = 1
 " let g:move_key_modifier_visualmode = 'S' "Move entire blocks in visual mode
 Plugin 'matze/vim-move' "
 
+" Shows a git diff in the sign column.
+" Keys: jump between hunks [c and ]c. Preview, stage, and undo hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+" :GitGutterToggle
+Plugin 'airblade/vim-gitgutter' " git status
+" Consistent movement mappings for hunks using 'h'
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+" Open list of changes as QuickFixList
+nmap ,ho :command! Gqf GitGutterQuickFix && copen<cr>
 " NerdCommenter: Comment with shortcut keys
 " Keys: ,cc comment, c<space> toggle comment, cu uncomment,
 "        c$ comment out till end of the line,
