@@ -333,6 +333,11 @@ map gz* <Plug>(asterisk-gz*)
 map z#  <Plug>(asterisk-z#)
 map gz# <Plug>(asterisk-gz#)
 
+Plugin 'liuchengxu/vim-which-key'
+nnoremap <silent> <leader> :WhichKey ','<CR>
+" By default timeoutlen is 1000 m_s
+set timeoutlen=500
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
