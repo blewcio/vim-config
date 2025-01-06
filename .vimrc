@@ -223,19 +223,29 @@ let g:lt_height = 5 " Height of the opened window
 " " or @ to toggle, or C-R in INSERT (then symbol to paste)
 Plugin 'junegunn/vim-peekaboo'
 
-" Ultisnip: Enable snippet injection
+" For now use SnipMate insted of UltiSnip
+" Ultis, Bash likenip: Enable snippet injection
 " Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
-if has("py3")
-  "Plugin 'SirVer/ultisnips'
-  "Plugin 'honza/vim-snippets' "Snipets repository
-  "let g:UltiSnipsExpandTrigger="<Tab>"
-  "let g:UltiSnipsJumpForwardTrigger="<Tab>"
-  "let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
-  "let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
-  " function! GetSnipsInCurrentScope() " Required for AutoComplPop
-  "    return UltiSnips#SnippetsInCurrentScope()
-  " endfunction
+if ((1==0 ) && has("py3" ))
+  Plugin 'SirVer/ultisnips'
+  let g:UltiSnipsExpandTrigger="<Tab>"
+  let g:UltiSnipsJumpForwardTrigger="<Tab>"
+  let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " Will not work in xterm
+  let g:UltiSnipsListSnippets="<C-l>"          " Applies to Insert mode only
+  function! GetSnipsInCurrentScope() " Required for AutoComplPop
+     return UltiSnips#SnippetsInCurrentScope()
+  endfunction
+else
+  Plugin 'MarcWeber/vim-addon-mw-utils' " Dependency of snipmate
+  Plugin 'tomtom/tlib_vim.git' " Dependency of snipmate
+  Plugin 'garbas/vim-snipmate'
+" List all snipets in this context
+  imap <C-ü> <Plug>snipMateShow
+" Not used because of SuperTab
+  " imap <C-J> <Plug>snipMateNextOrTrigger
 endif
+
+Plugin 'honza/vim-snippets' "Snipets repository
 
 " Bufferline: to list active buffers in airline
 Plugin 'bling/vim-bufferline'
