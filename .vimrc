@@ -165,8 +165,11 @@ nnoremap <silent> <leader>cap V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 nnoremap <silent> <leader>cB V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 
 " TagBar: Browse the tags of the current file and get an overview of its structure
+" Install brew install universal-ctags
+" Note: Own key mappings in Tagbar, e.g. p,P open without jumping, ? for help
 Plugin 'preservim/tagbar'
-nnoremap <silent> <F2> :TagbarToggle<CR>
+nnoremap <silent> <F8> :TagbarToggle<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
 
 " Fugitive: git integration
 " Commands: G add, Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
