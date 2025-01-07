@@ -20,6 +20,18 @@ vnoremap j gj
 vnoremap k gk
 
 " Remap keys for German keyboard
+nmap ß /
+imap ß /
+vmap ß /
+cmap ß /
+nmap ¿ \
+imap ¿ \
+vmap ¿ \
+cmap ¿ \
+nmap Ü ^
+imap Ü ^
+vmap Ü ^
+cmap Ü ^
 nmap ü ~
 imap ü ~
 vmap ü ~
