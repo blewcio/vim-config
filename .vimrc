@@ -60,6 +60,9 @@ cnoremap <C-K> <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+" Save like in other windows applications
+nnoremap <C-S> :write!<CR>
+
 " Shortcuts to directly use the system clipboard
 nnoremap <Leader>p "*]p
 nnoremap <Leader>P "*]P
