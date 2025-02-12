@@ -335,6 +335,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
+let g:airline#extensions#tmuxline#enabled = 0
 
 " Conditional loading if tmux installed
 if executable("tmux")
