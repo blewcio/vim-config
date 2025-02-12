@@ -161,6 +161,7 @@ map <Leader><Leader>j <Plug>(easymotion-overwin-line)
 map <Leader><Leader>k <Plug>(easymotion-overwin-line)
 map <Leader><Leader>l <Plug>(easymotion-lineanywhere)
 map <Leader><Leader>h <Plug>(easymotion-lineanywhere)
+map <Leader><Leader>f <Plug>(easymotion-s)
 map <Leader><Leader>; <Plug>(easymotion-repeat)
 
 " Integration of Easyotion and fuzzy search
