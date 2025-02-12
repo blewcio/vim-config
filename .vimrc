@@ -35,6 +35,7 @@ cmap Ü ^
 nmap ü ~
 imap ü ~
 vmap ü ~
+omap ü ~
 cmap ü ~
 nmap ö [
 nmap ä ]
@@ -44,6 +45,8 @@ vmap ö [
 vmap ä ]
 cmap ö [
 cmap ä ]
+omap ö [
+omap ä ]
 nmap Ö {
 nmap Ä }
 imap Ö {
@@ -52,6 +55,8 @@ vmap Ö {
 vmap Ä }
 cmap Ö {
 cmap Ä }
+omap Ö {
+omap Ä }
 
 " Bash-like movement in Vims command line
 cnoremap <C-A> <Home>
