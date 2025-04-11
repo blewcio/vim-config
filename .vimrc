@@ -81,12 +81,12 @@ nnoremap <C-S> :write!<CR>
 nnoremap <Leader>p "*]p
 nnoremap <Leader>P "*]P
 nnoremap <Leader>y :y*<cr>
-nnoremap <Leader>c ^"*c$
-nnoremap <Leader>d ^"*d$
+" nnoremap <Leader>c ^"*c$
+" nnoremap <Leader>d ^"*d$
 vnoremap <Leader>y "*y
 nnoremap <Leader>Y "*y$
-vnoremap <Leader>c "*c
-vnoremap <Leader>d "*d
+" vnoremap <Leader>c "*c
+" vnoremap <Leader>d "*d
 nnoremap <Leader>yap "*yap
 
 " Text operations:
