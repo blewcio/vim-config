@@ -96,7 +96,7 @@ map <leader>pp :setlocal paste!<cr> " Toggle paste mode for copy paste from exte
 
 " Others:
 nnoremap <leader>x :bd <CR> " Shortcut to close a buffer
-nnoremap <leader>cd :cd %:p:h<cr> " Switch to the directory of the open buffer
+" nnoremap <leader>cd :cd %:p:h<cr> " Switch to the directory of the open buffer
 map ,e :e $MYVIMRC<CR>
 map ,s :so $MYVIMRC<CR>
 
@@ -249,6 +249,7 @@ let g:rainbow_active = 1
 Plugin 'preservim/nerdcommenter.git'
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters
 " Additional mappings to comment entire blocks (without motion support)
+nnoremap <silent> <leader>cd :call nerdcommenter#Comment('n', 'uncomment')<CR>
 nnoremap <silent> <leader>cap V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 nnoremap <silent> <leader>cB V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 
