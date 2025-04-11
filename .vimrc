@@ -323,9 +323,8 @@ else
   Plugin 'tomtom/tlib_vim.git' " Dependency of snipmate
   Plugin 'garbas/vim-snipmate'
 " List all snipets in this context
-  imap <C-ü> <Plug>snipMateShow
-" Not used because of SuperTab
-  " imap <C-J> <Plug>snipMateNextOrTrigger
+  imap <M-n> <Plug>snipMateShow
+  imap <M-j> <Plug>snipMateNextOrTrigger
 endif
 
 Plugin 'honza/vim-snippets' "Snipets repository
