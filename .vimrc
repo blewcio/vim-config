@@ -456,7 +456,7 @@ set dictionary+=/usr/share/dict/words " " Load file for keyword autocompletion (
 set thesaurus+=~/.vim/thesaurus/mthesaur.txt " Load file for thesaurus (^X^T)
 set tags=./tags,tags    " Automatically load tags file
 
-autocmd FocusLost   ?* silent! wa      " Auto-save when focus is lost (GUI)
+autocmd FocusLost,BufLeave ?* silent! wa      " Auto-save when focus is lost (GUI)
 autocmd BufWinLeave ?* mkview          " Auto-save session when closing a buffer (?* to apply for files only)
 autocmd BufWinEnter ?* silent loadview " Restore session when opening a buffer
 autocmd! BufWritePost .vimrc source ~/.vimrc " Auto reload $MYVIMRC when editing it
