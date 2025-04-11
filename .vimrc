@@ -13,6 +13,9 @@ let mapleader= ","            " Map leader command key
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Remap Esc to Ctrl-C in Insert mode (Normal Ctrl-C is normally a hard stop)
+inoremap <C-c> <Esc>
+
 " General key bindings
 nnoremap j gj
 nnoremap k gk
