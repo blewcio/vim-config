@@ -224,7 +224,7 @@ nmap ,hr :GitGutter<cr>  " Reload lines
 
 " Visually display indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
-" Usage: Indent guide toggle :IndentGuidesToggle
+" Usage: Indent guide toggle :IndentGuidesToggle, ,ig toggle
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -252,7 +252,7 @@ nnoremap <silent> <leader>cB V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 " Note: Own key mappings in Tagbar, e.g. p,P open without jumping, ? for help
 Plugin 'preservim/tagbar'
 nnoremap <silent> <F8> :TagbarToggle<CR>
-nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
 
 " Fugitive: git integration
 " Commands: G add, Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
