@@ -60,6 +60,12 @@ cmap Ö {
 cmap Ä }
 omap Ö {
 omap Ä }
+xmap ö [
+xmap ä ]
+xmap Ä }
+xmap Ö {
+xmap ü ~
+xmap Ü ^
 
 " Bash-like movement in Vims command line
 cnoremap <C-A> <Home>
