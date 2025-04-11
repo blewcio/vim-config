@@ -218,7 +218,9 @@ Plugin 'airblade/vim-gitgutter' " git status
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 " Open list of changes as QuickFixList
-nmap ,ho :command! Gqf GitGutterQuickFix && copen<cr>
+" nmap ,ho :command! Gqf GitGutterQuickFix && copen<cr>
+nmap ,ho :GitGutterQuickFix<cr>:copen<cr> " Populate QuickFixList
+nmap ,hr :GitGutter<cr>  " Reload lines
 
 " Visually display indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
