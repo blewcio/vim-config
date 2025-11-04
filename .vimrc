@@ -134,13 +134,18 @@ Plugin 'tpope/vim-unimpaired'
 if executable("fzf")
   Plugin 'junegunn/fzf.vim' " Main plugin
   Plugin 'junegunn/fzf' "Base functions
-  
-  nmap <Leader>of :Files<CR> " Open files
-  nmap <Leader>ob :Buffers<CR> " Open buffers
-  nmap <Leader>or :History<CR> " Recent files
-  nmap <Leader>og :Rg<CR> " File content (requies ripgrep)
-  nmap <Leader>ol :Lines<CR> " Search lines in open buffers
-  nmap <Leader>/ :Maps<CR> " Key mappings
+  " Open files
+  nmap <Leader>of :Files<CR> 
+  " Open buffers
+  nmap <Leader>ob :Buffers<CR> 
+  " Recent files
+  nmap <Leader>or :History<CR> 
+  " File content (requies ripgrep)
+  nmap <Leader>og :Rg<CR> 
+  " Search lines in open buffers
+  nmap <Leader>ol :Lines<CR> 
+  " Key mappings
+  nmap <Leader>/ :Maps<CR> 
 else
   " CtrlP: Fuzzy search in files and buffers
   " Keys: Open ,o or ,or search inrrecent files, ,of in filesystem, ,ob in buffers
