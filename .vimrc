@@ -112,6 +112,11 @@ Plugin 'jlanzarotta/bufexplorer'
 nnoremap ,b :BufExplorerHorizontalSplit<CR>
 map gb :bnext<cr>
 map gB :bprevious<cr>
+map <leader>1 :b1<cr>
+map <leader>2 :b2<cr>
+map <leader>3 :b3<cr>
+map <leader>4 :b4<cr>
+map <leader>5 :b5<cr>
 
 " NerdTree: open a window with a file tree
 " Key: <F3>
