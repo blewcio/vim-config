@@ -27,10 +27,12 @@ nmap ß /
 imap ß /
 vmap ß /
 cmap ß /
+xmap ß /
 nmap ¿ \
 imap ¿ \
 vmap ¿ \
 cmap ¿ \
+xmap ¿ \
 nmap Ü ^
 imap Ü ^
 vmap Ü ^
@@ -81,13 +83,14 @@ nnoremap <C-S> :write!<CR>
 nnoremap <Leader>p "*]p
 nnoremap <Leader>P "*]P
 nnoremap <Leader>y :y*<cr>
+nnoremap <Leader>Y "*y$
+nnoremap <Leader>yy "*yy
+nnoremap <Leader>yap "*yap
 " nnoremap <Leader>c ^"*c$
 " nnoremap <Leader>d ^"*d$
 vnoremap <Leader>y "*y
-nnoremap <Leader>Y "*y$
 " vnoremap <Leader>c "*c
 " vnoremap <Leader>d "*d
-nnoremap <Leader>yap "*yap
 
 " Text operations:
 nnoremap Y y$ " Yank to the end of line (make Y consistent with C and D)
@@ -117,6 +120,8 @@ map <leader>2 :b2<cr>
 map <leader>3 :b3<cr>
 map <leader>4 :b4<cr>
 map <leader>5 :b5<cr>
+" Reload all buffers (e.g. when working with Claude)
+nnoremap <Leader>r :bufdo e<CR>   
 
 " NerdTree: open a window with a file tree
 " Key: <F3>
@@ -144,8 +149,8 @@ if executable("fzf")
   " Open buffers
   nmap <Leader>ob :Buffers<CR> 
   " Recent files
-  nmap <Leader>or :History<CR> 
-  " File content (requies ripgrep)
+  nmap <Leader>or :History<CR>
+  " File content (requires ripgrep)
   nmap <Leader>og :Rg<CR> 
   " Search lines in open buffers
   nmap <Leader>ol :Lines<CR> 
@@ -153,7 +158,7 @@ if executable("fzf")
   nmap <Leader>/ :Maps<CR> 
 else
   " CtrlP: Fuzzy search in files and buffers
-  " Keys: Open ,o or ,or search inrrecent files, ,of in filesystem, ,ob in buffers
+  " Keys: Open ,o or ,or search in recent files, ,of in filesystem, ,ob in buffers
   "       Ctrl-kj move up and down; Ctrl-c close
   Plugin 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_map = '<leader>o'
@@ -449,7 +454,6 @@ filetype indent on     " Load filetype indent file
 set encoding=utf-8     " This line fixes encoding issues over SSH
 set termencoding=utf-8 " This line fixes encoding issues over SSH
 set nocompatible       " Activates vi Improved enhacements, e.g. filetype
-let mapleader= ","     " Map leader command key
 set hidden             " Enable buffer change without saving
 set autowrite          " Auto-write at any buffer operation or command
 " set backup             " Auto-backup before rewrite.  NOTE: Might be annoying if you forget to close a buffer
@@ -580,7 +584,7 @@ autocmd FileType python setlocal ts=4
 autocmd FileType python setlocal sw=4
 autocmd FileType python setlocal sts=4
 autocmd FileType python,ruby,perl iab #! #!/usr/bin/env<Space><C-R>=&ft<CR>
-autocmd FileType python set makeprg=python\ %
+autocmd FileType python set makeprg=python3\ %
 
 " Perl:
 autocmd FileType perl set makeprg=perl\ %
