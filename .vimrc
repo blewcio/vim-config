@@ -200,10 +200,6 @@ function! s:incsearch_config(...) abort
   \   'is_expr': 0
   \ }), get(a:, 1, {}))
 endfunction
-" Remap standard search to Easymotion search
-noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 
 " Fuzzy search with Easymotion
 Plugin 'haya14busa/incsearch-fuzzy.vim'
