@@ -421,6 +421,12 @@ let g:SuperTabContextDefaultCompletionType = 'context'
 let g:SuperTabMappingForward = '<Tab>'
 let g:SuperTabMappingBackward = '<S-Tab>'
 
+" Copilot: AI-powered code completion
+" Commands: :Copilot setup (first time), :Copilot enable/disable
+Plugin 'github/copilot.vim'
+let g:copilot_no_tab_map = v:true
+imap <silent><script><expr> <C-Y> copilot#Accept("\<CR>")
+
 " Improved asterisk *
 " Useful for z*cgn and then . (replace next search pattern)
 Plugin 'haya14busa/vim-asterisk'
