@@ -94,6 +94,7 @@ vnoremap <Leader>y "*y
 
 " Text operations:
 nnoremap Y y$ " Yank to the end of line (make Y consistent with C and D)
+nnoremap S i<CR><Esc>k$ " Split line at cursor (opposite of J)
 map <leader>pp :setlocal paste!<cr> " Toggle paste mode for copy paste from external sources
 " nnoremap <Space> i_<Esc>r " Insert a single character in Normal Mode
 
