@@ -262,6 +262,13 @@ let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
 
+" Undotree: visualize and navigate the persistent undo history (undofile
+" above only stores it; this makes it actually browsable, including
+" branches you'd otherwise lose by undoing then editing differently)
+Plugin 'mbbill/undotree'
+nnoremap <Leader>u :UndotreeToggle<CR>
+let g:undotree_WindowLayout = 2
+
 " Fugitive: git integration
 " Commands: G add, Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
 Plugin 'tpope/vim-fugitive'
@@ -442,6 +449,25 @@ Plugin 'liuchengxu/vim-which-key'
 nnoremap <silent> <leader> :WhichKey ','<CR>
 " By default timeoutlen is 1000 m_s
 set timeoutlen=500
+
+" ---- Considered but not added (reviewed 2026-09-07); revisit if the itch
+" ---- comes back ----
+" - tpope/vim-obsession: auto session (window/tab/buffer layout)
+"   persistence, complementing the mkview/loadview per-buffer state below.
+"   Pair it with `set sessionoptions-=options`.
+" - ALE fixers (g:ale_fixers + g:ale_fix_on_save): auto-format on save,
+"   reusing ALE's existing lint-on-save wiring. Start with just
+"   '*': ['remove_trailing_lines', 'trim_whitespace'] before trusting it
+"   with per-language formatters (black/prettier/gofmt).
+" - editorconfig/editorconfig-vim: respect a project's .editorconfig over
+"   our own indent defaults. Needs
+"   g:EditorConfig_exclude_patterns = ['fugitive://.*'] to avoid errors on
+"   fugitive's virtual buffers.
+" - janko/vim-test: real test-runner (nearest/file/suite/last) via the
+"   existing vimux strategy, replacing the ,rr "run current file" hack.
+" - asyncomplete.vim + asyncomplete-lsp.vim: proper completion engine to
+"   replace SuperTab+ALE completion. Lower priority while the Neovim
+"   migration is already building the same thing via nvim-cmp.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
