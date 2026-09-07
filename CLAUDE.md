@@ -68,8 +68,7 @@ On first launch, Neovim will automatically install lazy.nvim and all plugins. Se
 
 **Navigation & Search**:
 - `fzf.vim` / `ctrlp.vim` - Fuzzy file/buffer finding (Leader key mappings: `,of`, `,ob`, `,or`, `,og`)
-- `vim-easymotion` - Quick cursor jumping (`,, + motion`)
-- `vim-sneak` - Two-character search
+- `vim-easymotion` + `incsearch-fuzzy.vim` - Quick cursor jumping (`,, + motion`, `,,/` for fuzzy jump)
 - `nerdtree` - File tree explorer (F3)
 
 **Editing & Text Manipulation**:
@@ -83,8 +82,10 @@ On first launch, Neovim will automatically install lazy.nvim and all plugins. Se
 - `vim-gitgutter` - Show git diff in sign column (`]h`/`[h` to navigate hunks)
 
 **Development Tools**:
-- `syntastic` - Syntax checking (auto-opens error list)
+- `ale` - Async linting on save, plus LSP-backed completion (auto-opens error list; replaces the unmaintained Syntastic)
 - `tagbar` - Browse code structure (F8)
+- `vim-gutentags` - Regenerates ctags in the background automatically (no manual key needed)
+- `undotree` - Browse persistent undo history, including branches (`,u`)
 - `supertab` - Tab completion in insert mode
 - `vim-snipmate` / `ultisnips` - Code snippets
 
@@ -110,9 +111,10 @@ The leader key is `,` (comma). Important mappings:
 - `,r` - Reload all buffers
 - `gb` / `gB` - Next/previous buffer
 - `,1` through `,5` - Jump to buffer 1-5
+- `,<Tab>` - Jump to alternate (last used) buffer
 
 **Clipboard**:
-- `,y` / `,Y` - Yank to system clipboard
+- `,yy` / `,Y` - Yank line / yank to end of line, to system clipboard
 - `,p` / `,P` - Paste from system clipboard
 
 **Git**:
@@ -125,6 +127,7 @@ The leader key is `,` (comma). Important mappings:
 - `,m` - Toggle mark visibility
 - `,ig` - Toggle indent guides
 - `,tt` - Toggle Tagbar
+- `,u` - Toggle Undotree
 
 ### German Keyboard Remappings
 
@@ -138,16 +141,16 @@ The configuration extensively remaps keys for German keyboard layouts:
 ## File Type Specific Behavior
 
 - **Python**: 4-space tabs, makeprg set to `python %`
-- **C**: F8 generates ctags
 - **HTML**: F9 opens in browser, textwidth disabled
 - **Text files**: Spell checking enabled (en_us)
 - **Shell scripts**: Shebang auto-insertion, makeprg set to `sh %`
 
 ## Important Settings
 
-- **Persistent undo**: Enabled, stored in `.vim/var/undo/`
+- **Persistent undo**: Enabled, stored in `.vim/var/undo/`; browsable via Undotree (`,u`)
 - **Auto-save**: On focus loss and buffer leave
 - **View persistence**: Window state saved/restored automatically
+- **Ctags**: Auto-regenerated in the background by vim-gutentags whenever files change (no manual key needed)
 - **Line length**: 80 columns highlighted (magenta background)
 - **Folding**: Syntax-based, disabled by default
 - **Completion**: Omnicomplete enabled, dictionary and thesaurus configured
@@ -155,16 +158,16 @@ The configuration extensively remaps keys for German keyboard layouts:
 ## Editing .vimrc
 
 When modifying `.vimrc`:
-- The configuration is a single monolithic file (~676 lines)
-- Plugin declarations are between `call vundle#begin()` and `call vundle#end()` (.vimrc:105-443)
-- General settings start at line 445
-- Filetype-specific configurations are in autocmd groups starting at line 564
-- The file auto-reloads on save (line 477)
+- The configuration is a single monolithic file (~708 lines)
+- Plugin declarations are between `call vundle#begin()` and `call vundle#end()` (.vimrc:106-473)
+- General settings start at line 475
+- Filetype-specific configurations are in autocmd groups starting at line 596
+- The file auto-reloads on save (line 506)
 
 ## Common Tasks
 
 **Add a new plugin**:
-1. Add `Plugin 'author/plugin-name'` in the Vundle section (.vimrc:105-443)
+1. Add `Plugin 'author/plugin-name'` in the Vundle section (.vimrc:106-473)
 2. Run `:PluginInstall` in Vim
 
 **Modify key mapping**:
@@ -173,7 +176,7 @@ When modifying `.vimrc`:
 
 **Change color scheme**:
 - Current: PaperColor (dark mode)
-- Color configuration is at .vimrc:653-676
+- Color configuration is at .vimrc:686-706
 
 **Add snippet**:
 - Place custom snippets in `.vim/snippets/`
@@ -203,7 +206,7 @@ nvim/
 │       ├── motion.lua        # Flash (replaces easymotion)
 │       ├── completion.lua    # nvim-cmp (replaces SuperTab)
 │       ├── treesitter.lua    # Syntax highlighting
-│       ├── lsp.lua           # Native LSP (replaces Syntastic)
+│       ├── lsp.lua           # Native LSP (replaces ALE)
 │       ├── tmux.lua          # Tmux integration
 │       └── utilities.lua     # Various utilities
 └── README.md                 # Full Neovim documentation
@@ -216,7 +219,7 @@ nvim/
 - fzf/CtrlP → Telescope
 - NERDTree → nvim-tree
 - vim-airline → lualine
-- Syntastic → Native LSP + nvim-lint
+- ALE → Native LSP + nvim-lint
 - tagbar → Aerial
 - vim-easymotion → Flash
 - SuperTab → nvim-cmp + LuaSnip
