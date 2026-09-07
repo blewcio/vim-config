@@ -43,8 +43,20 @@ function! CommitCheck()
 
   " Parse the change types
   for l:line in l:list
-      let [l:flag,l:file] = split(l:line)
-      for l:key in keys(s:flagdict)        
+      " Status line is "<flag> <path>"; match instead of split() since
+      " renamed-file lines ("R  old -> new") and paths with spaces would
+      " otherwise produce more than 2 whitespace-separated tokens
+      let l:matches = matchlist(l:line, '^\s*\(\S\+\)\s\+\(.*\)$')
+      if empty(l:matches)
+        continue
+      endif
+      let l:flag = l:matches[1]
+      let l:file = l:matches[2]
+      " Renames are reported as "old -> new"; keep just the new path
+      if l:file =~ ' -> '
+        let l:file = matchstr(l:file, ' -> \zs.*$')
+      endif
+      for l:key in keys(s:flagdict)
           if l:key == l:flag
              let l:dict = {'filename': l:file, 'text': s:flagdict[l:key]}
              call add(l:qflist, l:dict)
@@ -52,11 +64,15 @@ function! CommitCheck()
              "Open tabs for modified files
              if l:key == 'M'
                 exec "tabedit " .l:file
-                VCSVimDiff
-             endif   
+                " Show a diff via fugitive if it's a git checkout and available
+                if isdirectory('.git') && exists(':Gdiffsplit')
+                  Gdiffsplit
+                endif
+             endif
           endif
           unlet l:key
       endfor
+      unlet l:matches
       unlet l:flag
       unlet l:file
       unlet l:line

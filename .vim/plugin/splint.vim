@@ -24,7 +24,7 @@ function! SplintCheck ()
   silent exec "make ".l:filename
 
   echo(l:makeprg_tmp)
-	setlocal makeprg="l:makeprg_tmp"
+	let &l:makeprg = l:makeprg_tmp
   copen
 
 endfunction
