@@ -1,5 +1,3 @@
-"TODO: Smart autocompletion popups
-" Do 16 Okt 2014 18:47:39 CEST
 "  -------------  Load plugins first  -------------
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -16,57 +14,60 @@ filetype off                  " required
 inoremap <C-c> <Esc>
 
 " General key bindings
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+" Move by display line when no count is given, but fall back to normal
+" linewise j/k when a count is supplied (keeps 5j, macros, and operator
+" counts working as expected)
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+vnoremap <expr> j v:count ? 'j' : 'gj'
+vnoremap <expr> k v:count ? 'k' : 'gk'
 
 " Remap keys for German keyboard
-nmap ß /
-imap ß /
-vmap ß /
-cmap ß /
-xmap ß /
-nmap ¿ \
-imap ¿ \
-vmap ¿ \
-cmap ¿ \
-xmap ¿ \
-nmap Ü ^
-imap Ü ^
-vmap Ü ^
-cmap Ü ^
-nmap ü ~
-imap ü ~
-vmap ü ~
-omap ü ~
-cmap ü ~
-nmap ö [
-nmap ä ]
-imap ö [
-imap ä ]
-vmap ö [
-vmap ä ]
-cmap ö [
-cmap ä ]
-omap ö [
-omap ä ]
-nmap Ö {
-nmap Ä }
-imap Ö {
-imap Ä }
-vmap Ö {
-vmap Ä }
-cmap Ö {
-cmap Ä }
-omap Ö {
-omap Ä }
-xmap ö [
-xmap ä ]
-xmap Ä }
-xmap Ö {
-xmap ü ~
-xmap Ü ^
+nnoremap ß /
+inoremap ß /
+vnoremap ß /
+cnoremap ß /
+xnoremap ß /
+nnoremap ¿ \
+inoremap ¿ \
+vnoremap ¿ \
+cnoremap ¿ \
+xnoremap ¿ \
+nnoremap Ü ^
+inoremap Ü ^
+vnoremap Ü ^
+cnoremap Ü ^
+nnoremap ü ~
+inoremap ü ~
+vnoremap ü ~
+onoremap ü ~
+cnoremap ü ~
+nnoremap ö [
+nnoremap ä ]
+inoremap ö [
+inoremap ä ]
+vnoremap ö [
+vnoremap ä ]
+cnoremap ö [
+cnoremap ä ]
+onoremap ö [
+onoremap ä ]
+nnoremap Ö {
+nnoremap Ä }
+inoremap Ö {
+inoremap Ä }
+vnoremap Ö {
+vnoremap Ä }
+cnoremap Ö {
+cnoremap Ä }
+onoremap Ö {
+onoremap Ä }
+xnoremap ö [
+xnoremap ä ]
+xnoremap Ä }
+xnoremap Ö {
+xnoremap ü ~
+xnoremap Ü ^
 
 " Bash-like movement in Vims command line
 cnoremap <C-A> <Home>
@@ -81,15 +82,10 @@ nnoremap <C-S> :write!<CR>
 " Shortcuts to directly use the system clipboard
 nnoremap <Leader>p "*]p
 nnoremap <Leader>P "*]P
-nnoremap <Leader>y :y*<cr>
 nnoremap <Leader>Y "*y$
 nnoremap <Leader>yy "*yy
 nnoremap <Leader>yap "*yap
-" nnoremap <Leader>c ^"*c$
-" nnoremap <Leader>d ^"*d$
 vnoremap <Leader>y "*y
-" vnoremap <Leader>c "*c
-" vnoremap <Leader>d "*d
 
 " Text operations:
 " Yank to the end of line (make Y consistent with C and D)
@@ -98,14 +94,12 @@ nnoremap Y y$
 nnoremap S i<CR><Esc>k$
 " Toggle paste mode for copy paste from external sources
 noremap <leader>pp :setlocal paste!<cr>
-" nnoremap <Space> i_<Esc>r " Insert a single character in Normal Mode
 
 " Others:
 " Shortcut to close a buffer
 nnoremap <leader>x :bd <CR>
-" nnoremap <leader>cd :cd %:p:h<cr> " Switch to the directory of the open buffer
-noremap ,e :e $MYVIMRC<CR>
-noremap ,s :so $MYVIMRC<CR>
+noremap <Leader>e :e $MYVIMRC<CR>
+noremap <Leader>s :so $MYVIMRC<CR>
 
 " Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -116,7 +110,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " BufExplorer: open a window with a list of active buffers
 Plugin 'jlanzarotta/bufexplorer'
-nnoremap ,b :BufExplorerHorizontalSplit<CR>
+nnoremap <Leader>b :BufExplorerHorizontalSplit<CR>
 noremap gb :bnext<cr>
 noremap gB :bprevious<cr>
 noremap <leader>1 :b1<cr>
@@ -150,17 +144,17 @@ if executable("fzf")
   Plugin 'junegunn/fzf.vim' " Main plugin
   Plugin 'junegunn/fzf' "Base functions
   " Open files
-  nmap <Leader>of :Files<CR>
+  nnoremap <Leader>of :Files<CR>
   " Open buffers
-  nmap <Leader>ob :Buffers<CR>
+  nnoremap <Leader>ob :Buffers<CR>
   " Recent files
-  nmap <Leader>or :History<CR>
+  nnoremap <Leader>or :History<CR>
   " File content (requires ripgrep)
-  nmap <Leader>og :Rg<CR>
+  nnoremap <Leader>og :Rg<CR>
   " Search lines in open buffers
-  nmap <Leader>ol :Lines<CR>
+  nnoremap <Leader>ol :Lines<CR>
   " Key mappings
-  nmap <Leader>/ :Maps<CR>
+  nnoremap <Leader>/ :Maps<CR>
 else
   " CtrlP: Fuzzy search in files and buffers
   " Keys: Open ,o or ,or search in recent files, ,of in filesystem, ,ob in buffers
@@ -168,43 +162,27 @@ else
   Plugin 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_map = '<leader>o'
   let g:ctrlp_cmd = 'CtrlPCurFile' "Search current directory as default
-  nmap <Leader>of :CtrlP<CR>
-  nmap <Leader>or :CtrlPMRU<CR>
-  nmap <Leader>ob :CtrlPBuffer<CR>
+  nnoremap <Leader>of :CtrlP<CR>
+  nnoremap <Leader>or :CtrlPMRU<CR>
+  nnoremap <Leader>ob :CtrlPBuffer<CR>
 endif
 
 " Easymotion: Jump directly to a position on the screen
-" Keys: ,,f{character} ; ,,w ,,b word within a line (forwards, backwards)
-" ,,,k ,,j jump to line
+" Keys: ,,f{character} ; ,,w word within a line
+" ,,k jump to line (overwin) ; ,,l jump to line (lineanywhere)
+" ,,/ fuzzy search + jump (via incsearch-fuzzy)
 Plugin 'easymotion/vim-easymotion'
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings with two leaders ,,
 let g:EasyMotion_smartcase = 1  " Enable case-sensitive search
 let g:EasyMotion_enter_jump_first = 1 " Jump to first occurence by pressing Enter
 map <Leader><Leader>w <Plug>(easymotion-overwin-w)
-map <Leader><Leader>j <Plug>(easymotion-overwin-line)
 map <Leader><Leader>k <Plug>(easymotion-overwin-line)
 map <Leader><Leader>l <Plug>(easymotion-lineanywhere)
-map <Leader><Leader>h <Plug>(easymotion-lineanywhere)
 map <Leader><Leader>f <Plug>(easymotion-s)
 map <Leader><Leader>; <Plug>(easymotion-repeat)
 
-" Integration of Easyotion and fuzzy search
+" incsearch.vim: required base plugin for incsearch-fuzzy.vim below
 Plugin 'haya14busa/incsearch.vim'
-Plugin 'haya14busa/incsearch-easymotion.vim'
-
-" Keys for interactive search with Easymotion
-" map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
-" map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
-" map <Leader><Leader>g <Plug>(incsearch-easymotion-stay)
-function! s:incsearch_config(...) abort
-  return incsearch#util#deepextend(deepcopy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {
-  \     "\<CR>": '<Over>(easymotion)'
-  \   },
-  \   'is_expr': 0
-  \ }), get(a:, 1, {}))
-endfunction
 
 " Fuzzy search with Easymotion
 Plugin 'haya14busa/incsearch-fuzzy.vim'
@@ -217,12 +195,7 @@ function! s:config_easyfuzzymotion(...) abort
   \   'is_stay': 1
   \ }), get(a:, 1, {}))
 endfunction
-noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
-
-" Jump to any location specified by two characters.
-" (Sometimes quicker than Easymotion.)
-Plugin 'justinmk/vim-sneak'
-let g:sneak#label = 1
+noremap <silent><expr> <Leader><Leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " Move entire lines (or characters) of text
 " Keys: A-(hjkl)
@@ -237,11 +210,10 @@ Plugin 'airblade/vim-gitgutter' " git status
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 " Open list of changes as QuickFixList
-" nmap ,ho :command! Gqf GitGutterQuickFix && copen<cr>
 " Populate QuickFixList
-nmap ,ho :GitGutterQuickFix<cr>:copen<cr>
+nnoremap <Leader>ho :GitGutterQuickFix<cr>:copen<cr>
 " Reload lines
-nmap ,hr :GitGutter<cr>
+nnoremap <Leader>hr :GitGutter<cr>
 
 " Visually display indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -274,6 +246,14 @@ nnoremap <silent> <leader>cB V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 Plugin 'preservim/tagbar'
 nnoremap <silent> <F8> :TagbarToggle<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
+
+" Gutentags: regenerate ctags in the background whenever files change
+" (uses the same universal-ctags binary as Tagbar above)
+Plugin 'ludovicchabant/vim-gutentags'
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
 
 " Fugitive: git integration
 " Commands: G add, Gwrite, Gread, Gcommit, Glog, Gstatus (dv diff, cc commit, - " add)
@@ -322,7 +302,7 @@ Plugin 'kshenoy/vim-signature'
 nnoremap <Leader>m :SignatureToggle<CR>
 
 " ListToggle: Easy toggle quickfix and location lists
-" Keys: ,q and ,l
+" Keys: ,q toggle quickfix list, ,l toggle location list
 Plugin 'Valloric/ListToggle'
 let g:lt_height = 5 " Height of the opened window
 
@@ -463,9 +443,10 @@ call vundle#end()            " required
 filetype plugin indent on " Detect filetype; load its plugin and indent files
 
 set encoding=utf-8     " This line fixes encoding issues over SSH
-set termencoding=utf-8 " This line fixes encoding issues over SSH
 set hidden             " Enable buffer change without saving
 set autowrite          " Auto-write at any buffer operation or command
+set updatetime=100     " Faster CursorHold events (snappier GitGutter/ALE signs)
+set signcolumn=yes     " Always reserve the sign column so text doesn't shift
 " set backup             " Auto-backup before rewrite.  NOTE: Might be annoying if you forget to close a buffer
 set undofile           " Save undo history to an undo file, persistently stored
 if has("win32")  " TODO: needs relative paths
@@ -481,10 +462,14 @@ set dictionary+=/usr/share/dict/words " " Load file for keyword autocompletion (
 set thesaurus+=~/.vim/thesaurus/mthesaur.txt " Load file for thesaurus (^X^T)
 set tags=./tags,tags    " Automatically load tags file
 
+" NOTE (trade-off, kept deliberately): this fires on every BufLeave, not just
+" window-manager focus loss, so ALE lints/writes can run against buffer
+" states you didn't consciously choose to save. Convenient day-to-day; if it
+" ever causes surprise writes, scope it down to `autocmd FocusLost ?* ...`.
 autocmd FocusLost,BufLeave ?* silent! wa      " Auto-save when focus is lost (GUI)
 autocmd BufWinLeave ?* mkview          " Auto-save session when closing a buffer (?* to apply for files only)
 autocmd BufWinEnter ?* silent loadview " Restore session when opening a buffer
-autocmd! BufWritePost .vimrc source ~/.vimrc " Auto reload $MYVIMRC when editing it
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC " Auto reload $MYVIMRC when editing it
 
 " Keys:
 " Default make/compile key
@@ -511,6 +496,10 @@ set omnifunc=syntaxcomplete#Complete " Omnicomplete function for C^X+C^O
 iab xdate <c-r>=strftime("%c")<cr>
 
 " -------------  Navigation -------------
+" Splits:
+set splitright            " Open vertical splits to the right of the current window
+set splitbelow            " Open horizontal splits below the current window
+
 " Mouse:
 set mouse=nvi             " Enable the use of the mouse (Works in GUI, but not in all terminals)
 set mousemodel=popup      " Popup options on mouse hover. Works with gvim.
@@ -534,7 +523,7 @@ set incsearch                    " Highlight matches as you type in the search s
 set ignorecase                   " When searching ignore case (except explicit caps)
 set nohlsearch                   " Do NOT highlight previous matches of a search pattern
 set smartcase                    " Case insensitive searches become casesensitive
-nmap <leader>nh :nohlsearch <CR> " Shortcut to disable current highlighting
+nnoremap <leader>nh :nohlsearch<CR> " Shortcut to disable current highlighting
 
 syntax on               " Syntax highlighting
 hi comment ctermfg=grey " Adapt colors of comments
@@ -575,17 +564,13 @@ augroup FileTypeOptions
 autocmd!
 
 " Text:
-autocmd FileType text setlocal spell                 " Turn on the spell checker
-autocmd FileType text setlocal spell spelllang=en_us " Set the language to US
+autocmd FileType text setlocal spell spelllang=en_us " Turn on the spell checker (US English)
 " setlocal spell spelllang=de                        " Set the language to German
 autocmd FileType gitcommit,svn,*commit* setlocal spell " Spell check when writing commit logs
 
 " Shell:
 autocmd FileType sh iab #! #!/bin/<C-R>=&ft<CR>
 autocmd FileType sh set makeprg=sh\ %
-
-" C:
-autocmd FileType c nnoremap <silent> <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " Python:
 autocmd FileType python setlocal ts=4
