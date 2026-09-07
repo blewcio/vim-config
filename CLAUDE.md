@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repository contains both classic Vim and modern Neovim configurations for a developer using a German keyboard layout with extensive customizations for navigation, editing, and development workflows.
 
-Vim is currently used. Migration to Neovim is in progress and just started.
+Classic Vim is the daily driver. Migration to Neovim is in progress and just started, but Neovim is not yet actually used day-to-day — the `nvim/` config exists and is symlinked to `~/.config/nvim`, but Vim remains the default editor until the migration is further along.
 
 **Two Configurations Available:**
 - **Classic Vim** (`.vimrc` + `.vim/`) - Vimscript with Vundle plugin manager
