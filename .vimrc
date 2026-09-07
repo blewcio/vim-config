@@ -93,16 +93,20 @@ vnoremap <Leader>y "*y
 " vnoremap <Leader>d "*d
 
 " Text operations:
-nnoremap Y y$ " Yank to the end of line (make Y consistent with C and D)
-nnoremap S i<CR><Esc>k$ " Split line at cursor (opposite of J)
-map <leader>pp :setlocal paste!<cr> " Toggle paste mode for copy paste from external sources
+" Yank to the end of line (make Y consistent with C and D)
+nnoremap Y y$
+" Split line at cursor (opposite of J)
+nnoremap S i<CR><Esc>k$
+" Toggle paste mode for copy paste from external sources
+noremap <leader>pp :setlocal paste!<cr>
 " nnoremap <Space> i_<Esc>r " Insert a single character in Normal Mode
 
 " Others:
-nnoremap <leader>x :bd <CR> " Shortcut to close a buffer
+" Shortcut to close a buffer
+nnoremap <leader>x :bd <CR>
 " nnoremap <leader>cd :cd %:p:h<cr> " Switch to the directory of the open buffer
-map ,e :e $MYVIMRC<CR>
-map ,s :so $MYVIMRC<CR>
+noremap ,e :e $MYVIMRC<CR>
+noremap ,s :so $MYVIMRC<CR>
 
 " Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -114,20 +118,21 @@ Plugin 'VundleVim/Vundle.vim'
 " BufExplorer: open a window with a list of active buffers
 Plugin 'jlanzarotta/bufexplorer'
 nnoremap ,b :BufExplorerHorizontalSplit<CR>
-map gb :bnext<cr>
-map gB :bprevious<cr>
-map <leader>1 :b1<cr>
-map <leader>2 :b2<cr>
-map <leader>3 :b3<cr>
-map <leader>4 :b4<cr>
-map <leader>5 :b5<cr>
+noremap gb :bnext<cr>
+noremap gB :bprevious<cr>
+noremap <leader>1 :b1<cr>
+noremap <leader>2 :b2<cr>
+noremap <leader>3 :b3<cr>
+noremap <leader>4 :b4<cr>
+noremap <leader>5 :b5<cr>
 " Reload all buffers (e.g. when working with Claude)
-nnoremap <Leader>r :bufdo e<CR>   
+nnoremap <Leader>r :bufdo e<CR>
 
 " NerdTree: open a window with a file tree
 " Key: <F3>
 Plugin 'preservim/nerdtree.git'
-nnoremap <F3> :NERDTreeToggle<CR> " NERDTree, toggle as a window
+" NERDTree, toggle as a window
+nnoremap <F3> :NERDTreeToggle<CR>
 
 " A collection of language pack for syntax highlighting, e.g. csv
 Plugin 'sheerun/vim-polyglot'
@@ -146,17 +151,17 @@ if executable("fzf")
   Plugin 'junegunn/fzf.vim' " Main plugin
   Plugin 'junegunn/fzf' "Base functions
   " Open files
-  nmap <Leader>of :Files<CR> 
+  nmap <Leader>of :Files<CR>
   " Open buffers
-  nmap <Leader>ob :Buffers<CR> 
+  nmap <Leader>ob :Buffers<CR>
   " Recent files
   nmap <Leader>or :History<CR>
   " File content (requires ripgrep)
-  nmap <Leader>og :Rg<CR> 
+  nmap <Leader>og :Rg<CR>
   " Search lines in open buffers
-  nmap <Leader>ol :Lines<CR> 
+  nmap <Leader>ol :Lines<CR>
   " Key mappings
-  nmap <Leader>/ :Maps<CR> 
+  nmap <Leader>/ :Maps<CR>
 else
   " CtrlP: Fuzzy search in files and buffers
   " Keys: Open ,o or ,or search in recent files, ,of in filesystem, ,ob in buffers
@@ -234,8 +239,10 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 " Open list of changes as QuickFixList
 " nmap ,ho :command! Gqf GitGutterQuickFix && copen<cr>
-nmap ,ho :GitGutterQuickFix<cr>:copen<cr> " Populate QuickFixList
-nmap ,hr :GitGutter<cr>  " Reload lines
+" Populate QuickFixList
+nmap ,ho :GitGutterQuickFix<cr>:copen<cr>
+" Reload lines
+nmap ,hr :GitGutter<cr>
 
 " Visually display indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -310,7 +317,8 @@ let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the defaul
 " Keys: ,m to toggle mark sign, m. toggle mark in line,  m? lists of marks 
 "       mx place a mark x, dmx delete
 Plugin 'kshenoy/vim-signature'
-nnoremap <Leader>m :SignatureToggle<CR> " Toggle marks visibility on screen
+" Toggle marks visibility on screen
+nnoremap <Leader>m :SignatureToggle<CR>
 
 " ListToggle: Easy toggle quickfix and location lists
 " Keys: ,q and ,l
@@ -324,7 +332,8 @@ Plugin 'junegunn/vim-peekaboo'
 " For now use SnipMate insted of UltiSnip
 " Ultis, Bash likenip: Enable snippet injection
 " Note: xterm does not recognize the difference between C-Tab, S-Tab, Tab
-if ((1==0 ) && has("py3" ))
+let g:use_ultisnips = 0 " Set to 1 to switch back to UltiSnips
+if (g:use_ultisnips && has("py3" ))
   Plugin 'SirVer/ultisnips'
   let g:UltiSnipsExpandTrigger="<Tab>"
   let g:UltiSnipsJumpForwardTrigger="<Tab>"
@@ -343,9 +352,6 @@ else
 endif
 
 Plugin 'honza/vim-snippets' "Snipets repository
-
-" Bufferline: to list active buffers in airline
-Plugin 'bling/vim-bufferline'
 
 " Airline: more functional status line
 Plugin 'vim-airline/vim-airline'
@@ -372,9 +378,12 @@ if executable("tmux")
 
   " Vimux: launch commands from vim in a separate tmux pane (useful for scripting)
   Plugin 'preservim/vimux'
-  nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR> " Execute the current file (TODO: works for executable scripts only)
-  nnoremap <Leader>ri :VimuxInspectRunner<CR> " Inspect runner pane
-  nnoremap <Leader>rx :VimuxCloseRunner<CR>   " Close vim tmux runner opened by VimuxRunCommand
+  " Execute the current file (TODO: works for executable scripts only)
+  nnoremap <Leader>rr :call VimuxRunCommand("clear; ./" . bufname("%"))<CR>
+  " Inspect runner pane
+  nnoremap <Leader>ri :VimuxInspectRunner<CR>
+  " Close vim tmux runner opened by VimuxRunCommand
+  nnoremap <Leader>rx :VimuxCloseRunner<CR>
 
   " TODO: Currently not used
   " Dispatch: build asynchroneously in tmux
@@ -450,25 +459,20 @@ call vundle#end()            " required
 
 " -------------  General configuration -------------
 " --------------------------------------------------
-filetype plugin indent on " Load filetype plugin/configuration file
-filetype plugin on     " Detect type and set FileType for event detection
-filetype indent on     " Load filetype indent file
+filetype plugin indent on " Detect filetype; load its plugin and indent files
 
 set encoding=utf-8     " This line fixes encoding issues over SSH
 set termencoding=utf-8 " This line fixes encoding issues over SSH
-set nocompatible       " Activates vi Improved enhacements, e.g. filetype
 set hidden             " Enable buffer change without saving
 set autowrite          " Auto-write at any buffer operation or command
 " set backup             " Auto-backup before rewrite.  NOTE: Might be annoying if you forget to close a buffer
 set undofile           " Save undo history to an undo file, persistently stored
 if has("win32")  " TODO: needs relative paths
 "  set undodir=C:\vim\var\undo       " Where to store undo files
-"  set backupdir=C:\vim\var\backup   " Where to store backup files
 "  set viewdir=C:\vim\var\view       " Where to store view files
 "  set directory=C:\vim\var\swp      " Where to store swap files
 else
   set undodir=~/.vim/var/undo       " Where to store undo files
-  set backupdir=~/.vim/var/backup   " Where to store backup files
   set viewdir=~/.vim/var/view       " Where to store view files
   set directory=~/.vim/var/swp      " Where to store swap files
 endif
@@ -482,7 +486,8 @@ autocmd BufWinEnter ?* silent loadview " Restore session when opening a buffer
 autocmd! BufWritePost .vimrc source ~/.vimrc " Auto reload $MYVIMRC when editing it
 
 " Keys:
-noremap <silent> <F9> :make<CR>  " Default make/compile key
+" Default make/compile key
+noremap <silent> <F9> :make<CR>
 
 " -------------  Editing -------------
 set expandtab             " Auto magically expand <Tab> to <Spaces>s
@@ -508,7 +513,6 @@ iab xdate <c-r>=strftime("%c")<cr>
 " Mouse:
 set mouse=nvi             " Enable the use of the mouse (Works in GUI, but not in all terminals)
 set mousemodel=popup      " Popup options on mouse hover. Works with gvim.
-set ttymouse=xterm2
 
 " Cursor: Move cursor by one physical line (and not a wrapped one)
 set sidescroll=5       " Acceleration of horizontal scrolling. Jump by 5 col
@@ -533,7 +537,7 @@ nmap <leader>nh :nohlsearch <CR> " Shortcut to disable current highlighting
 
 syntax on               " Syntax highlighting
 hi comment ctermfg=grey " Adapt colors of comments
-set nowrap             " Don't break lines (doesn't affect the file)
+" set nowrap           " Don't break lines (doesn't affect the file) -- disabled: conflicts with the gj/gk remap above, which only makes sense when lines wrap
 if exists('+breakindent')
     set breakindent showbreak=\ ++ " If lines are wrapped, mark with ++
 endif
@@ -556,8 +560,8 @@ set laststatus=2       " Always show the status line (0 never)
 set noerrorbells
 autocmd GUIEnter * set visualbell t_vb= " Disables bells in GUI mode
 
-highlight OverLength ctermbg=magenta ctermfg=white guibg=#592929   " Overlength highlighting
-match OverLength /\%80v.\+/                                        " Define overlength TODO: should be dynamic
+highlight ColorColumn ctermbg=magenta guibg=#592929 " Overlength highlighting
+set colorcolumn=+1                                  " Track 'textwidth' dynamically
 
 nnoremap <silent> <C-L> :nohls<CR><C-L>  " C-L should clean highlighted search too
 
