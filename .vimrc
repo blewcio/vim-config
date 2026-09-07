@@ -1,4 +1,3 @@
-"TODO: Check ALE linting Plugin 'dense-analysis/ale'
 "TODO: Smart autocompletion popups
 " Do 16 Okt 2014 18:47:39 CEST
 "  -------------  Load plugins first  -------------
@@ -297,21 +296,22 @@ Plugin 'tpope/vim-repeat'
 " Keys: % cycle through tags, but also through if, elsif, else (excluding C)
 Plugin 'tmhedberg/matchit'
 
-" Syntastic: Integrate syntax checking. By default works when writing to files.
-" Command: Errors - display local list of syntax errors
-Plugin 'vim-syntastic/syntastic'
-let g:syntastic_always_populate_loc_list = 1 " Populate list with errors
-let g:syntastic_auto_loc_list = 1 " Auto-open error list, if any
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_jump = 2 " Auto-jump to first error
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs=1        " Visualize errors at the beginning of each line
-let g:syntastic_error_symbol="✗"      " Custom symbol for errors
-let g:syntastic_warning_symbol="⚠"    " Custom symbol for warnings
-let g:syntastic_enable_balloons=1     " Show ballons when the mouse is hovered
-let g:syntastic_aggregate_errors=1    " Run through all available checkers
-let g:syntastic_html_checkers = ["w3", "tidy", "validator"]  " Change the default order of HTML checkers
+" ALE: Async linting (replaces Syntastic, which is unmaintained)
+" Command: ALEInfo - show which linters ALE found for the current buffer
+Plugin 'dense-analysis/ale'
+let g:ale_open_list = 1                  " Auto-open error list, if any
+let g:ale_list_window_size = 5
+let g:ale_set_signs = 1                  " Visualize errors at the beginning of each line
+let g:ale_sign_error = "✗"               " Custom symbol for errors
+let g:ale_sign_warning = "⚠"             " Custom symbol for warnings
+let g:ale_set_balloons = 1               " Show balloons when the mouse is hovered
+" ALE lints on every keystroke by default; keep the old Syntastic-like
+" behaviour of only linting on save/open instead
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" Drop Syntastic's network-dependent 'w3' HTML checker; ALE runs every
+" other detected linter per filetype by default when g:ale_linters is unset
+let g:ale_linters = {'html': ['tidy']}
 
 " vim-signature: Show marks next to lines
 " Keys: ,m to toggle mark sign, m. toggle mark in line,  m? lists of marks 
