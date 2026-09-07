@@ -501,8 +501,12 @@ set tags=./tags,tags    " Automatically load tags file
 " states you didn't consciously choose to save. Convenient day-to-day; if it
 " ever causes surprise writes, scope it down to `autocmd FocusLost ?* ...`.
 autocmd FocusLost,BufLeave ?* silent! wa      " Auto-save when focus is lost (GUI)
-autocmd BufWinLeave ?* mkview          " Auto-save session when closing a buffer (?* to apply for files only)
-autocmd BufWinEnter ?* silent loadview " Restore session when opening a buffer
+" &buftype ==# '' excludes quickfix/location-list/help/etc. windows: without
+" it, ALE's async loclist popping open during quit (g:ale_open_list) fires
+" this on a loclist buffer and loadview's implicit buffer switch collides
+" with Vim's shutdown, raising E788 (see SNR ... VimCloseCallback errors)
+autocmd BufWinLeave ?* if &buftype ==# '' | mkview | endif " Auto-save session when closing a buffer (?* to apply for files only)
+autocmd BufWinEnter ?* if &buftype ==# '' | silent loadview | endif " Restore session when opening a buffer
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC " Auto reload $MYVIMRC when editing it
 
 " Keys:
