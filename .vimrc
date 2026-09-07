@@ -305,6 +305,7 @@ let g:ale_set_signs = 1                  " Visualize errors at the beginning of 
 let g:ale_sign_error = "✗"               " Custom symbol for errors
 let g:ale_sign_warning = "⚠"             " Custom symbol for warnings
 let g:ale_set_balloons = 1               " Show balloons when the mouse is hovered
+let g:ale_completion_enabled = 1         " LSP-backed completion popups (Tab still driven by SuperTab)
 " ALE lints on every keystroke by default; keep the old Syntastic-like
 " behaviour of only linting on save/open instead
 let g:ale_lint_on_text_changed = 'never'
