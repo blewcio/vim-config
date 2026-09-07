@@ -118,6 +118,9 @@ noremap <leader>2 :b2<cr>
 noremap <leader>3 :b3<cr>
 noremap <leader>4 :b4<cr>
 noremap <leader>5 :b5<cr>
+" Jump to the alternate (last used) buffer, more reliable than raw <C-^>
+" across terminals/keyboard layouts
+nnoremap <Leader><Tab> <C-^>
 " Reload all buffers (e.g. when working with Claude)
 nnoremap <Leader>r :bufdo e<CR>
 
@@ -143,6 +146,10 @@ Plugin 'tpope/vim-unimpaired'
 if executable("fzf")
   Plugin 'junegunn/fzf.vim' " Main plugin
   Plugin 'junegunn/fzf' "Base functions
+  " Use ripgrep for :Files so it's faster and respects .gitignore
+  if executable("rg")
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  endif
   " Open files
   nnoremap <Leader>of :Files<CR>
   " Open buffers
@@ -338,6 +345,7 @@ Plugin 'honza/vim-snippets' "Snipets repository
 Plugin 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#ale#enabled = 1 " Show ALE error/warning counts in the statusline
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline#extensions#tmuxline#enabled = 0
@@ -486,7 +494,10 @@ set backspace=indent,eol,start " Enable backspace to go over lines
 set linebreak             " Break lines at convinient points
 "set virtualedit=all      " Cursor can be moved anywhere, where is no text too
 set pastetoggle=<F12>     " Use paste modes to copy in terminal form other windows
-" TODO: set clipboard=unnamedplus " yank/paste to the system clipboard (*) by default (needs vim-gnome)
+" DECISION: not setting clipboard=unnamedplus. The <Leader>y/Y/yy/yap/p/P
+" mappings above already give explicit, deliberate control over when the
+" system clipboard is touched; 'unnamedplus' would make every yank/delete
+" silently overwrite it instead.
 set textwidth=79          " Max number of columns, for auto line breaking
 set report=0              " Always show count of modifications (e.g. substitution)
 set omnifunc=syntaxcomplete#Complete " Omnicomplete function for C^X+C^O
@@ -535,6 +546,7 @@ set showcmd            " Show the current command in the last line (on the right
 set wildmenu           " Display autocompletion options above the command line
 set wildmode=longest:full,full " Completion mode that is used
 set wildignore+=*.o,*.obj " Ignored during autocompletion
+set wildignore+=*/node_modules/*,*/.git/*,*/__pycache__/*,*/.venv/* " Ignore heavy/vendored dirs
 " set completeopt=longest
 set completeopt=menu,menuone,popup
 set number             " Show line numbers
